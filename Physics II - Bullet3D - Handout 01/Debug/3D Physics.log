@@ -1,0 +1,14 @@
+﻿  ModuleCamera3D.cpp
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(45,21): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(46,22): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(50,21): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(51,22): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(63,22): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(64,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(68,23): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(69,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(73,23): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(74,24): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(78,23): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\ModuleCamera3D.cpp(79,24): warning C4305: 'argument': truncation from 'double' to 'float'
+  3D Physics.vcxproj -> C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 01\Debug\3D Physics - class1 Handout.exe
