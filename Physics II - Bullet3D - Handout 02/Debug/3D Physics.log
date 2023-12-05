@@ -1,0 +1,5 @@
+﻿  ModulePhysics3D.cpp
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 02\ModulePhysics3D.cpp(63,20): warning C4305: 'argument': truncation from 'double' to 'const btScalar'
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 02\ModulePhysics3D.cpp(88,38): warning C4305: 'argument': truncation from 'double' to 'btScalar'
+BulletCollision_debug.lib(btCapsuleShape.obj) : warning LNK4099: PDB 'vc140.pdb' was not found with 'BulletCollision_debug.lib(btCapsuleShape.obj)' or at 'C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 02\Debug\vc140.pdb'; linking object as if no debug info
+  3D Physics.vcxproj -> C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 02\Debug\3D Physics - class2 Handout.exe
