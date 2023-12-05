@@ -106,8 +106,10 @@ update_status ModulePhysics3D::Update(float dt)
 			// TODO 7: Create a Solid Sphere when pressing 1 on camera position
 			btMotionState* motionState = new btDefaultMotionState();
 			
+			vec3 point = App->camera->Position;
+			point = point - 0 * App->camera->Z;
 			mat4x4 glMatrix = IdentityMatrix;
-			glMatrix.translate(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
+			glMatrix.translate(point.x, point.y, point.z);
 			btTransform btMatrix;
 			btMatrix.setFromOpenGLMatrix(&glMatrix);
 
