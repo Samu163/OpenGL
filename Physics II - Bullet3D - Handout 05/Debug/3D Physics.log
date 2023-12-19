@@ -1,0 +1,8 @@
+﻿  ModulePhysics3D.cpp
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 05\PhysVehicle3D.h(1,9): warning C4068: unknown pragma 'onceStruct'
+  ModulePlayer.cpp
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 05\PhysVehicle3D.h(1,9): warning C4068: unknown pragma 'onceStruct'
+  PhysVehicle3D.cpp
+C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 05\PhysVehicle3D.h(1,9): warning C4068: unknown pragma 'onceStruct'
+  Generating Code...
+  3D Physics.vcxproj -> C:\Users\samuelm1\Downloads\Physics II - Bullet3D - Handout 05\Debug\3D Physics - class5.exe
