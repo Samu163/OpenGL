@@ -22,11 +22,11 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 40, 0));
 	//{coordenadas de posicion (donde aparece)}, {Tamaño (x,y,z)}, Color, Angulos (x,y,z)
 	//El tamaño empieza en el 0,0, es decir, si es 100 va a ser 50 a un lado y 50 a otro
-	//Primera recta 
-	AddCube({ 1, 30, 1 }, { 30, 0, 200 }, Grey, 0, 0, 0);
-	//Curva1 hacia la izquierda
-	AddCube({ 4.5, 30, 111.5 }, { 30, 0, 30 }, Grey, 0, 15, 0);
-	//AddCube({ 10, 1, 00 }, { 2, 2, 10 }, Red, 0, 1, 0);
+	////Primera recta 
+	//AddCube({ 1, 30, 1 }, { 30, 0, 200 }, Grey, 0, 0, 0);
+	////Curva1 hacia la izquierda
+	//AddCube({ 4.5, 30, 111.5 }, { 30, 0, 30 }, Grey, 0, 15, 0);
+	////AddCube({ 10, 1, 00 }, { 2, 2, 10 }, Red, 0, 1, 0);
 
 	return ret;
 }
