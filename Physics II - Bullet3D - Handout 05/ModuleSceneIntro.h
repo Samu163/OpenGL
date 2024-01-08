@@ -20,7 +20,8 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
-	void ModuleSceneIntro::AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ);
+	void AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ);
+	void AddCylinder(vec3 pos, float radius, Color rgb, float rotX, float rotY, float rotZ);
 
 public:
 	/*
