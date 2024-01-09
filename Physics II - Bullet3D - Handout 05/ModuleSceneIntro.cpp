@@ -19,15 +19,15 @@ bool ModuleSceneIntro::Start()
 	bool ret = true;
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
-	App->camera->LookAt(vec3(0, 40, 0));
+	App->camera->LookAt(vec3(0, 50, 0));
 	//{coordenadas de posicion (donde aparece)}, {Tamaño (x,y,z)}, Color, Angulos (x,y,z)
 	//El tamaño empieza en el 0,0, es decir, si es 100 va a ser 50 a un lado y 50 a otro
 	//Primera recta 
 	AddCube({ 537.9103,30, 297.5769 }, { 46.6435, 0, 166.0748 }, Grey, 0, 0, 0);
 	//Curva1 hacia la izquierda
-	AddCube({ 530.3091, 30, 207.8799 }, { 61.8459, 0, 57.8398 }, Grey, 0, 26.974, 0);
-	AddCube({ 509.8372, 30, 185.0201 }, { 72.1752, 0, 71.5963 }, Grey, 0, 56.122, 0);
-	AddCube({ 431.3337, 30, 170.0843 }, { 140.6841, 0, 44.5639 }, Grey, 0, 90, 0);
+	AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
+	AddCube({ 509.8372-11, 30, 185.0201 }, { 62.1752, 0, 71.5963 }, Grey, 0, 56.122, 0);
+	AddCube({ 431.3337, 30, 170.0843 }, { 140.6841, 0, 44.5639 }, Grey, 0, 180, 0);
 	//AddCube({ 10, 1, 00 }, { 2, 2, 10 }, Red, 0, 1, 0);
 
 	return ret;
@@ -72,7 +72,6 @@ void ModuleSceneIntro::AddCylinder(vec3 pos, float radius, Color rgb, float rotX
 		cylinder.SetRotation(rotZ, { 0, 0, 1 });
 
 	App->physics->AddBody(cylinder, 0);
-	//buildingBlocks.add(cylinder);
 }
 
 void ModuleSceneIntro::AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ)

@@ -18,7 +18,7 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 	Y = vec3(0.0f, 1.0f, 0.0f);
 	Z = vec3(0.0f, 0.0f, 1.0f);
 
-	Position = vec3(0.0f, 80.0f, 5.0f);
+	Position = vec3(0.0f, 500.0f, 5.0f);
 	Reference = vec3(0.0f, 0.0f, 0.0f);
 }
 
@@ -105,30 +105,33 @@ update_status ModuleCamera3D::Update(float dt)
 		Position = Reference + Z * length(Position);
 	}
 
-	PhysVehicle3D* vehicle = App->player->vehicle; // get the vehicle from the player module
+	//Uncoment this to follow the car 
+	//UNCOMET
 
-	if (vehicle != nullptr)
-	{
-		// Get the vehicle's transformation matrix
-		btTransform trans = vehicle->vehicle->getChassisWorldTransform();
+	//PhysVehicle3D* vehicle = App->player->vehicle; // get the vehicle from the player module
 
-		// Convert Bullet transform to your math library's format (assuming mat4x4 type)
-		mat4x4 vehicleMatrix;
-		trans.getOpenGLMatrix(&vehicleMatrix);
+	//if (vehicle != nullptr)
+	//{
+	//	// Get the vehicle's transformation matrix
+	//	btTransform trans = vehicle->vehicle->getChassisWorldTransform();
 
-		// Extract position from the transform
-		vec3 vehiclePosition = vehicleMatrix.translation();
+	//	// Convert Bullet transform to your math library's format (assuming mat4x4 type)
+	//	mat4x4 vehicleMatrix;
+	//	trans.getOpenGLMatrix(&vehicleMatrix);
 
-		vec3 forward = getColumn(vehicleMatrix, 2); // For Z-axis
-		vec3 up = getColumn(vehicleMatrix, 1);    // For Y-axis
+	//	// Extract position from the transform
+	//	vec3 vehiclePosition = vehicleMatrix.translation();
 
-		// Calculate camera offset (example: behind and above the vehicle)
-		vec3 cameraOffset = -vehicleMatrix.getColumn(2) * distanceBehind + vehicleMatrix.getColumn(1) * distanceAbove;
+	//	vec3 forward = getColumn(vehicleMatrix, 2); // For Z-axis
+	//	vec3 up = getColumn(vehicleMatrix, 1);    // For Y-axis
 
-		// Update camera position and look at the vehicle
-		Position = vehiclePosition + cameraOffset;
-		LookAt(vehiclePosition);
-	}
+	//	// Calculate camera offset (example: behind and above the vehicle)
+	//	vec3 cameraOffset = -vehicleMatrix.getColumn(2) * distanceBehind + vehicleMatrix.getColumn(1) * distanceAbove;
+
+	//	// Update camera position and look at the vehicle
+	//	Position = vehiclePosition + cameraOffset;
+	//	LookAt(vehiclePosition);
+	//}
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
