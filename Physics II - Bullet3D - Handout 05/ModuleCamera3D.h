@@ -18,6 +18,9 @@ public:
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
+	float distanceAbove;  // Added this line for camera
+	float distanceBehind; // Added this line for camera
+
 private:
 
 	void CalculateViewMatrix();

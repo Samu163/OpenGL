@@ -498,6 +498,11 @@ public:
 	mat4x4& translate(float x, float y, float z);
 	mat4x4& transpose();
 	vec3  translation() const;
+
+	vec3 getColumn(int index) const {
+		int base = index * 4;
+		return vec3(M[base], M[base + 1], M[base + 2]);
+	}
 };
 
 // ----------------------------------------------------------------------------------------------------------------------------
