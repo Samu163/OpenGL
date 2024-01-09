@@ -29,6 +29,7 @@ bool ModulePlayer::Start()
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 0.5;
+	//HIELO = 1.5 NORMAL = 50
 	car.maxSuspensionForce = 6000.0f;
 
 	// Wheel properties ---------------------------------------
