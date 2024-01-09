@@ -45,3 +45,10 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	t.setOrigin(btVector3(x, y, z));
 	body->setWorldTransform(t);
 }
+
+//Set rotation
+void PhysBody3D::SetRotation(const btQuaternion& rotation) {
+	btTransform trans = body->getWorldTransform();
+	trans.setRotation(rotation);
+	body->setWorldTransform(trans);
+}
