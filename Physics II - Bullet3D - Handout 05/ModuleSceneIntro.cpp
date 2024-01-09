@@ -23,10 +23,11 @@ bool ModuleSceneIntro::Start()
 	//{coordenadas de posicion (donde aparece)}, {Tamaño (x,y,z)}, Color, Angulos (x,y,z)
 	//El tamaño empieza en el 0,0, es decir, si es 100 va a ser 50 a un lado y 50 a otro
 	//Primera recta 
-	AddCube({ 0,30, 0 }, { 47, 0, 166 }, Grey, 0, 0, 0);
-	AddCube({ 28,30, 150 }, { 50, 0, 166 }, Grey, 0, 20, 0);
-	AddCube({ 28,30, 280 }, { 50, 0, 166 }, Grey, 0, -20, 0);
-	AddCube({ -55,30, 380 }, { 45, 0, 166 }, Grey, 0, -60, 0);
+	AddCube({ 0,30.01, 0 }, { 47, 0, 166 }, Grey, 0, 0, 0);
+
+	AddCube({ 28,30.01, 150 }, { 50, 0, 166 }, Grey, -10, 20, 0);
+	AddCube({ 28,40.02, 280 }, { 50, 0, 166 }, Grey, 0, -20, 0);
+	AddCube({ -55,30.03, 380 }, { 45, 0, 166 }, Grey, 0, -60, 0);
 	//Curva1 hacia la izquierda
 	/*AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
 	AddCube({ 509.8372-11, 30, 185.0201 }, { 62.1752, 0, 71.5963 }, Grey, 0, 56.122, 0);
@@ -84,12 +85,13 @@ void ModuleSceneIntro::AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float
 	cube.SetPos(pos.x, pos.y, pos.z);
 	cube.size = size;
 	cube.color = rgb;
+	if (rotY != 0)
+		cube.SetRotation(rotY, { 0, 1, 0 });
 
 	if (rotX != 0)
 		cube.SetRotation(rotX, { 1, 0, 0 });
 
-	if (rotY != 0)
-		cube.SetRotation(rotY, { 0, 1, 0 });
+	
 
 	if (rotZ != 0)
 		cube.SetRotation(rotZ, { 0, 0, 1 });

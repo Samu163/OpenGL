@@ -21,20 +21,20 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 1, 4);
+	car.chassis_size.Set(2, 0.5, 4);
 	car.chassis_offset.Set(0, 1.3, 0);
 	car.mass = 500.0f;
-	car.suspensionStiffness = 15.88f;
+	car.suspensionStiffness = 2.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
-	car.frictionSlip = 0.5;
+	car.frictionSlip = 50;
 	//HIELO = 1.5 NORMAL = 50
 	car.maxSuspensionForce = 6000.0f;
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
-	float wheel_radius = 0.6f;
+	float wheel_radius = 0.4f;
 	float wheel_width = 0.5f;
 	float suspensionRestLength = 1.2f;
 
@@ -120,27 +120,60 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION;
+		acceleration = MAX_ACCELERATION*3;
+		vehicle->info.chassis_size.Set(2, 3.5, 4);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 
-		if(turn < TURN_DEGREES)
-			turn += TURN_DEGREES;
+		
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		{
+  			acceleration = MAX_ACCELERATION * 2;
+			velocityLimit = 30;
+			angle = 5.0f * DEGTORAD;
+		}
+		else
+		{
+			velocityLimit = 180;
+		}
+		if (turn < angle)
+			turn += angle;
 	}
+	
+	
+
+
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
+		
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		{
+			acceleration = -MAX_ACCELERATION ;
+			velocityLimit = 120;
+			angle = 5.0f * DEGTORAD;
+			isDrifting = true;
+
+		}
+		else
+		{
+			isDrifting = false;
+			velocityLimit = 180;
+		}
+		if (turn > -angle)
+			turn -= angle;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake = BRAKE_POWER;
+		brake = angle;
 	}
-
+	//Velocity limit
+	if (vehicle->GetKmh() > velocityLimit) {
+		acceleration = 0;
+	}
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
