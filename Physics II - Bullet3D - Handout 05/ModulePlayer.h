@@ -18,9 +18,10 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-
+	
 public:
 
+	vec3 lastCheckPoint = { 0,85,0 };
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;

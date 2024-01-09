@@ -2,8 +2,11 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
+#include "PhysVehicle3D.h"
+
 #include "PhysBody3D.h"
 #include "Color.h"
+#include "ModulePlayer.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -23,11 +26,11 @@ bool ModuleSceneIntro::Start()
 	//{coordenadas de posicion (donde aparece)}, {Tamaño (x,y,z)}, Color, Angulos (x,y,z)
 	//El tamaño empieza en el 0,0, es decir, si es 100 va a ser 50 a un lado y 50 a otro
 	//Primera recta 
-	AddCube({ 0,30.01, 0 }, { 47, 0, 166 }, Grey, 0, 0, 0);
+	AddCube({ 0,80.01, 0 }, { 47, 0, 166 }, Grey, 0, 0, 0);
 
-	AddCube({ 28,30.01, 150 }, { 50, 0, 166 }, Grey, -10, 20, 0);
-	AddCube({ 28,40.02, 280 }, { 50, 0, 166 }, Grey, 0, -20, 0);
-	AddCube({ -55,30.03, 380 }, { 45, 0, 166 }, Grey, 0, -60, 0);
+	AddCube({ 28,80.01, 150 }, { 50, 0, 166 }, Grey, -10, 20, 0);
+	AddCube({ 28,80.02, 280 }, { 50, 0, 166 }, Grey, 0, -20, 0);
+	AddCube({ -55,80.03, 380 }, { 45, 0, 166 }, Grey, 0, -60, 0);
 	//Curva1 hacia la izquierda
 	/*AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
 	AddCube({ 509.8372-11, 30, 185.0201 }, { 62.1752, 0, 71.5963 }, Grey, 0, 56.122, 0);
@@ -48,7 +51,11 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-
+	if (App->camera->Position.y < 50) {
+		App->player->vehicle->SetPos(App->player->lastCheckPoint.x, App->player->lastCheckPoint.y, App->player->lastCheckPoint.z);
+		App->player->acceleration = 0;
+		
+	}
 	p2List_item<Cube>* c = buildingBlocks.getFirst();
 	while (c != NULL) {
 		c->data.Render();

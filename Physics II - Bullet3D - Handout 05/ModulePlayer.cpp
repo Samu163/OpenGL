@@ -98,7 +98,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 35, 0);
+	vehicle->SetPos(0, 85, 0);
 	
 	return true;
 }
@@ -114,6 +114,8 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+
+
 	turn = acceleration = brake = 0.0f;
 
 	float angle = TURN_DEGREES;
@@ -121,7 +123,8 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION*3;
-		vehicle->info.chassis_size.Set(2, 3.5, 4);
+		//cambiar el tamaño del coche
+		//vehicle->info.chassis_size.Set(2, 3.5, 4);
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -173,6 +176,9 @@ update_status ModulePlayer::Update(float dt)
 	//Velocity limit
 	if (vehicle->GetKmh() > velocityLimit) {
 		acceleration = 0;
+	}
+	if (vehicle->GetKmh() < 0) {
+		acceleration = MAX_ACCELERATION*10;
 	}
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

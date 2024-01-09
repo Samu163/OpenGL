@@ -10,7 +10,7 @@ vec3 getColumn(const mat4x4& matrix, int index) {
 	return vec3(matrix.M[base], matrix.M[base + 1], matrix.M[base + 2]);
 }
 
-ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled), distanceAbove(5.0f), distanceBehind(10.0f) // Adjust this value as needed
+ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled), distanceAbove(5.0f), distanceBehind(25.0f) // Adjust this value as needed
 {
 	CalculateViewMatrix();
 
