@@ -23,11 +23,14 @@ bool ModuleSceneIntro::Start()
 	//{coordenadas de posicion (donde aparece)}, {Tamaño (x,y,z)}, Color, Angulos (x,y,z)
 	//El tamaño empieza en el 0,0, es decir, si es 100 va a ser 50 a un lado y 50 a otro
 	//Primera recta 
-	AddCube({ 537.9103,30, 297.5769 }, { 46.6435, 0, 166.0748 }, Grey, 0, 0, 0);
+	AddCube({ 0,30, 0 }, { 47, 0, 166 }, Grey, 0, 0, 0);
+	AddCube({ 28,30, 150 }, { 50, 0, 166 }, Grey, 0, 20, 0);
+	AddCube({ 28,30, 280 }, { 50, 0, 166 }, Grey, 0, -20, 0);
+	AddCube({ -55,30, 380 }, { 45, 0, 166 }, Grey, 0, -60, 0);
 	//Curva1 hacia la izquierda
-	AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
+	/*AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
 	AddCube({ 509.8372-11, 30, 185.0201 }, { 62.1752, 0, 71.5963 }, Grey, 0, 56.122, 0);
-	AddCube({ 431.3337, 30, 170.0843 }, { 140.6841, 0, 44.5639 }, Grey, 0, 180, 0);
+	AddCube({ 431.3337, 30, 170.0843 }, { 140.6841, 0, 44.5639 }, Grey, 0, 180, 0);*/
 	//AddCube({ 10, 1, 00 }, { 2, 2, 10 }, Red, 0, 1, 0);
 
 	return ret;
