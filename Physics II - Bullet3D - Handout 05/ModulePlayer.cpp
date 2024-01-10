@@ -125,6 +125,8 @@ update_status ModulePlayer::Update(float dt)
 		acceleration = MAX_ACCELERATION*3;
 		//cambiar el tamaño del coche
 		//vehicle->info.chassis_size.Set(2, 3.5, 4);
+		//Change the mass of the vehicle, the original mass is 500
+		vehicle->info.mass = 9000;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -171,7 +173,8 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake = angle;
+		//Brake power, decrease it to brake slower 
+		brake = 100;
 	}
 	//Velocity limit
 	if (vehicle->GetKmh() > velocityLimit) {

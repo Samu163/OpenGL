@@ -73,6 +73,7 @@ bool ModulePhysics3D::Start()
 update_status ModulePhysics3D::PreUpdate(float dt)
 {
 	//Aplicar una fuerza al btBody antes de stepSimulation
+	//Include the formulas from the theory project here and apply the force in the line bellow
 	world->stepSimulation(dt, 15);
 
 	int numManifolds = world->getDispatcher()->getNumManifolds();
