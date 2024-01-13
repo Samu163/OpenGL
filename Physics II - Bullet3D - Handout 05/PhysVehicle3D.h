@@ -2,6 +2,7 @@
 
 #include "PhysBody3D.h"
 #include "glmath.h"
+#include "Bullet/include/btBulletDynamicsCommon.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
@@ -51,9 +52,19 @@ public:
 	void Turn(float degrees);
 	float GetKmh() const;
 
+	// Method to get the btRigidBody
+	btRigidBody* GetRigidBody() const {
+		return vehicle->getRigidBody();
+	}
+
+
+
+
 	
 public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+
+
 };

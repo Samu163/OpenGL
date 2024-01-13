@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "p2List.h"
 #include "Primitive.h"
+#include "ModulePlayer.h"
 
 #include "Bullet/include/btBulletDynamicsCommon.h"
 
@@ -24,6 +25,10 @@ public:
 	btVector3 currentGravity; // Added this variable
 	bool gravityEnabled;  // To keep track of the gravity state
 	//
+
+	//Lift Force variables
+	bool liftEnabled;  // To keep track of the lift force state
+	btVector3 liftForce; // The lift force vector
 
 	bool Init();
 	bool Start();

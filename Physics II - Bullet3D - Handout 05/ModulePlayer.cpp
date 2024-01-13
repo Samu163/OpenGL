@@ -199,6 +199,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	//Player Debug Keys
+	//Gravity stuffs
 	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
 		App->physics->currentGravity.setY(App->physics->currentGravity.getY() - 1.0f); // Decrease gravity
 		App->physics->ChangeGravity(App->physics->currentGravity.getY());
@@ -208,7 +209,6 @@ update_status ModulePlayer::Update(float dt)
 		App->physics->currentGravity.setY(App->physics->currentGravity.getY() + 1.0f); // Increase gravity
 		App->physics->ChangeGravity(App->physics->currentGravity.getY());
 	}
-
 	// Toggle gravity with a key press (e.g., the 'G' key), if press again, switch to normal gravity
 	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN) {
 		if (App->physics->gravityEnabled) {
@@ -222,6 +222,18 @@ update_status ModulePlayer::Update(float dt)
 			App->physics->gravityEnabled = true;
 		}
 	}
+
+	// Lift force stuffs
+	// Toggle lift force with a key press (e.g., the 'L' key)
+	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
+		App->physics->liftEnabled = !App->physics->liftEnabled;
+
+		//reset the lift force vector when disabling lift
+		if (!App->physics->liftEnabled) {
+			App->physics->liftForce.setValue(0, 0, 0);
+		}
+	}
+
 
 
 
@@ -242,11 +254,12 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	//display the speed of the car
-	char title[100];
-	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f)",
-	vehicle->GetKmh(),
-	App->physics->gravityEnabled ? "Enabled" : "Disabled",
-	App->physics->currentGravity.getY());
+	char title[120];
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s",
+	          vehicle->GetKmh(),
+	          App->physics->gravityEnabled ? "Enabled" : "Disabled",
+	          App->physics->currentGravity.getY()),
+	          App->physics->liftEnabled ? "Enabled" : "Disabled",
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
