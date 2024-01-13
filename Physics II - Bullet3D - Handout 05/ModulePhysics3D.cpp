@@ -15,7 +15,7 @@
 	#pragma comment (lib, "Bullet/libx86/LinearMath.lib")
 #endif
 
-ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(app, start_enabled)
+ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(app, start_enabled), currentGravity(0.0f, -10.0f, 0.0f)
 {
 	debug = true;
 
@@ -52,7 +52,7 @@ bool ModulePhysics3D::Start()
 
 	world = new btDiscreteDynamicsWorld(dispatcher, broad_phase, solver, collision_conf);
 	world->setDebugDrawer(debug_draw);
-	world->setGravity(GRAVITY);
+	/*world->setGravity(GRAVITY);*/
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
 	// Big plane as ground
@@ -397,3 +397,11 @@ int	 DebugDrawer::getDebugMode() const
 {
 	return mode;
 }
+
+//a function to change the gravity
+void ModulePhysics3D::ChangeGravity(float gravityValue)
+{
+	currentGravity.setY(gravityValue); // Assuming gravity acts along the Y-axis
+	world->setGravity(currentGravity);
+}
+
