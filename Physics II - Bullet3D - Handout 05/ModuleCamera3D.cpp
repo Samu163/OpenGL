@@ -108,30 +108,30 @@ update_status ModuleCamera3D::Update(float dt)
 	//Uncoment this to follow the car 
 	//UNCOMET
 
-	PhysVehicle3D* vehicle = App->player->vehicle; // get the vehicle from the player module
+	//PhysVehicle3D* vehicle = App->player->vehicle; // get the vehicle from the player module
 
-	if (vehicle != nullptr)
-	{
-		// Get the vehicle's transformation matrix
-		btTransform trans = vehicle->vehicle->getChassisWorldTransform();
+	//if (vehicle != nullptr)
+	//{
+	//	// Get the vehicle's transformation matrix
+	//	btTransform trans = vehicle->vehicle->getChassisWorldTransform();
 
-		// Convert Bullet transform to your math library's format (assuming mat4x4 type)
-		mat4x4 vehicleMatrix;
-		trans.getOpenGLMatrix(&vehicleMatrix);
+	//	// Convert Bullet transform to your math library's format (assuming mat4x4 type)
+	//	mat4x4 vehicleMatrix;
+	//	trans.getOpenGLMatrix(&vehicleMatrix);
 
-		// Extract position from the transform
-		vec3 vehiclePosition = vehicleMatrix.translation();
+	//	// Extract position from the transform
+	//	vec3 vehiclePosition = vehicleMatrix.translation();
 
-		vec3 forward = getColumn(vehicleMatrix, 2); // For Z-axis
-		vec3 up = getColumn(vehicleMatrix, 1);    // For Y-axis
+	//	vec3 forward = getColumn(vehicleMatrix, 2); // For Z-axis
+	//	vec3 up = getColumn(vehicleMatrix, 1);    // For Y-axis
 
-		// Calculate camera offset (example: behind and above the vehicle)
-		vec3 cameraOffset = -vehicleMatrix.getColumn(2) * distanceBehind + vehicleMatrix.getColumn(1) * distanceAbove;
+	//	// Calculate camera offset (example: behind and above the vehicle)
+	//	vec3 cameraOffset = -vehicleMatrix.getColumn(2) * distanceBehind + vehicleMatrix.getColumn(1) * distanceAbove;
 
-		// Update camera position and look at the vehicle
-		Position = vehiclePosition + cameraOffset;
-		LookAt(vehiclePosition);
-	}
+	//	// Update camera position and look at the vehicle
+	//	Position = vehiclePosition + cameraOffset;
+	//	LookAt(vehiclePosition);
+	//}
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
