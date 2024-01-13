@@ -204,7 +204,7 @@ update_status ModulePlayer::Update(float dt)
 		App->physics->ChangeGravity(App->physics->currentGravity.getY());
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
 		App->physics->currentGravity.setY(App->physics->currentGravity.getY() + 1.0f); // Increase gravity
 		App->physics->ChangeGravity(App->physics->currentGravity.getY());
 	}
