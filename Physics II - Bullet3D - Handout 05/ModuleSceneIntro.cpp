@@ -26,7 +26,7 @@ bool ModuleSceneIntro::Start()
 	//{coordenadas de posicion (donde aparece)}, {Tamaño (x,y,z)}, Color, Angulos (x,y,z)
 	//El tamaño empieza en el 0,0, es decir, si es 100 va a ser 50 a un lado y 50 a otro
 	//Primera recta 
-	AddCube({ 0,80.01, 0 }, { 47, 0, 166 }, Grey, 0, 0, 0);
+	AddCube({ 0,80.02, 0 }, { 47, 0, 166 }, Grey, 0, 0, 0);
 
 	AddCube({ 28,80.01, 150 }, { 50, 0, 166 }, Grey, 0, 20, 0);
 	AddCube({ 28,80.02, 280 }, { 50, 0, 166 }, Grey, 0, -20, 0);
@@ -37,8 +37,16 @@ bool ModuleSceneIntro::Start()
 	//curva cerrada
 	AddCube({ -150,80.01, 570 }, { 55, 0, 100 }, Grey, 0, -120, 0);
 	AddCube({ -50,80.02, 570 }, { 45, 0, 166 }, Grey, 0, -70, 0);
-	AddCube({ -50+120,80.03, 570-20 }, { 166, 0, 45 }, Grey, 0, 0, 15);
+	//Rampa
 
+	AddCube({ -50+120,100.03, 570-20 }, { 166, 0, 45 }, Grey, 0, 0, 15);
+	//continuacion
+	AddCube({ -50 + 280,120.02, 570 - 20 }, { 166, 0, 45 }, Grey, 0, 0, 0);
+	AddCube({ -50 + 440,120.01, 570 - 20 }, { 166, 0, 45 }, Grey, 0, 0, 0);
+	AddCube({ -50 + 440+130,120.02, 570 - 65 }, { 166, 0, 45 }, Grey, 0, 40, 0);
+	//Rampa
+	AddCube({ -50 + 440 + 200,120.01, 570 - 130 }, { 50, 0, 50 }, Grey, 0, 0, 0);
+	AddCube({ -50 + 440 + 300,92.01, 570 - 130 }, { 200, 0, 45 }, Grey, 0, 0, -15);
 
 
 	//Curva1 hacia la izquierda
