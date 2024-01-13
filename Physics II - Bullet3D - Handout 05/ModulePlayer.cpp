@@ -115,20 +115,25 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 
-	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) {
 		//Apear in Checkpoint
 		float orientationMat[16];
-		memset(orientationMat, 1.0f, sizeof(orientationMat));
+		memset(orientationMat, 0.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
 		vehicle->SetPos(lastCheckPoint.x, lastCheckPoint.y, lastCheckPoint.z);
-		App->physics->world->setGravity(btVector3(0.0f, -5.0f, 0.0f));
 
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
 	}
-	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
+	{
+
 		vehicle->info.chassis_size.Set(10, 0.5, 4);
 		//vehicle->info.chassis_offset.Set(10, 0.5, 0);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
+	{
+		vehicle->info.frictionSlip = 1.5f;
 	}
 
 	turn = acceleration = brake = 0.0f;
@@ -167,6 +172,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		//Brake power, decrease it to brake slower 
+		angle = 15.0f * DEGTORAD;
 		acceleration = -MAX_ACCELERATION * 10;
 		if (vehicle->GetKmh() < 0) {
 			acceleration = -MAX_ACCELERATION;
@@ -190,6 +196,9 @@ update_status ModulePlayer::Update(float dt)
 		if (turn < angle)
 			turn += angle;
 	}
+
+
+
 
 	//Velocity limit
 	if (vehicle->GetKmh() > velocityLimit) {
