@@ -256,10 +256,10 @@ update_status ModulePlayer::Update(float dt)
 	//display the speed of the car
 	char title[120];
 	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s",
-	          vehicle->GetKmh(),
-	          App->physics->gravityEnabled ? "Enabled" : "Disabled",
-	          App->physics->currentGravity.getY()),
-	          App->physics->liftEnabled ? "Enabled" : "Disabled",
+		vehicle->GetKmh(),
+		App->physics->gravityEnabled ? "Enabled" : "Disabled",
+		App->physics->currentGravity.getY(),
+		App->physics->liftEnabled ? "Enabled" : "Disabled");
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
