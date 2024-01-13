@@ -20,7 +20,10 @@ public:
 	ModulePhysics3D(Application* app, bool start_enabled = true);
 	~ModulePhysics3D();
 
+	//Gravity variables
 	btVector3 currentGravity; // Added this variable
+	bool gravityEnabled;  // To keep track of the gravity state
+	//
 
 	bool Init();
 	bool Start();

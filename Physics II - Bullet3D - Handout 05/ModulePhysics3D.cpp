@@ -15,7 +15,7 @@
 	#pragma comment (lib, "Bullet/libx86/LinearMath.lib")
 #endif
 
-ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(app, start_enabled), currentGravity(0.0f, -10.0f, 0.0f)
+ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(app, start_enabled), currentGravity(0.0f, -10.0f, 0.0f), gravityEnabled(true)
 {
 	debug = true;
 

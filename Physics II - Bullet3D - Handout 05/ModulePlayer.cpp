@@ -209,6 +209,21 @@ update_status ModulePlayer::Update(float dt)
 		App->physics->ChangeGravity(App->physics->currentGravity.getY());
 	}
 
+	// Toggle gravity with a key press (e.g., the 'G' key), if press again, switch to normal gravity
+	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN) {
+		if (App->physics->gravityEnabled) {
+			App->physics->currentGravity.setY(0.0f); // Normal gravity
+			App->physics->ChangeGravity(App->physics->currentGravity.getY());
+			App->physics->gravityEnabled = false;
+		}
+		else {
+			App->physics->currentGravity.setY(-10.0f); // Normal gravity
+			App->physics->ChangeGravity(App->physics->currentGravity.getY());
+			App->physics->gravityEnabled = true;
+		}
+	}
+
+
 
 
 
