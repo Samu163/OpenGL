@@ -17,6 +17,7 @@ public:
 
 	bool Start();
 	update_status Update(float dt);
+	void ResetCarOrientation(float angle = 0);
 	bool CleanUp();
 	
 public:
@@ -28,4 +29,6 @@ public:
 	float brake;
 	float velocityLimit = 180;
 	bool isDrifting = false;
+	float half_width;
+	float half_length;
 };
