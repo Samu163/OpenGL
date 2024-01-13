@@ -133,7 +133,7 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		//Drift (change the letters but it cannot be the space)
-		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT)
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
 			acceleration = -MAX_ACCELERATION ;
 			velocityLimit = 120;
@@ -155,7 +155,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 
 
-		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT)
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
 			acceleration = -MAX_ACCELERATION;
 			velocityLimit = 120;
