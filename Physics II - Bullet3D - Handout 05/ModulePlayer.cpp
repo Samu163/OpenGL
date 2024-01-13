@@ -129,32 +129,11 @@ update_status ModulePlayer::Update(float dt)
 		vehicle->info.mass = 9000;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-	{
-
-		
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
-		{
-  			acceleration = MAX_ACCELERATION * 2;
-			velocityLimit = 30;
-			angle = 5.0f * DEGTORAD;
-		}
-		else
-		{
-			velocityLimit = 180;
-		}
-		if (turn < angle)
-			turn += angle;
-	}
-	
-	
-
-
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+		//Drift (change the letters but it cannot be the space)
+		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT)
 		{
 			acceleration = -MAX_ACCELERATION ;
 			velocityLimit = 120;
@@ -170,6 +149,26 @@ update_status ModulePlayer::Update(float dt)
 		if (turn > -angle)
 			turn -= angle;
 	}
+
+
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	{
+
+
+		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT)
+		{
+			acceleration = -MAX_ACCELERATION;
+			velocityLimit = 120;
+			angle = 5.0f * DEGTORAD;
+		}
+		else
+		{
+			velocityLimit = 180;
+		}
+		if (turn < angle)
+			turn += angle;
+	}
+
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
