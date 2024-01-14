@@ -108,9 +108,9 @@ update_status ModuleCamera3D::Update(float dt)
 	//Uncoment this to follow the car 
 	//UNCOMET
 
-	//PhysVehicle3D* vehicle = App->player->vehicle; // get the vehicle from the player module
+	PhysVehicle3D* vehicle = App->player->vehicle; // get the vehicle from the player module
 
-	//
+	
 
 	//if (vehicle != nullptr)
 	//{
