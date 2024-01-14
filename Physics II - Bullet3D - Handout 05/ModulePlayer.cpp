@@ -37,11 +37,11 @@ bool ModulePlayer::Start()
 
 	car.chassis_size5.Set(1.5, 0.3, 0.2);
 	car.chassis_offset5.Set(0, 2.2, 1);
+	
+
+	car.chassis_size6.Set(1, 0.9, 0.5);
+	car.chassis_offset6.Set(0, 2.2, -1.4);
 	/*
-
-	car.chassis_size6.Set(2, 2, 2);
-	car.chassis_offset6.Set(0, 0, 0);
-
 	car.chassis_size7.Set(2, 2, 2);
 	car.chassis_offset7.Set(0, 0, 0);*/
 

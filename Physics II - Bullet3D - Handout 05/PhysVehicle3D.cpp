@@ -75,8 +75,8 @@ void PhysVehicle3D::Render()
 	offsetDDercha = offsetDDercha.rotate(q.getAxis(), q.getAngle());
 
 	Cube AIzquierdaChassis(info.chassis_size6.x, info.chassis_size6.y, info.chassis_size6.z);
-	AIzquierdaChassis.color = White;
-	vehicle->getChassisWorldTransform().getOpenGLMatrix(&CabinaChassis.transform);
+	AIzquierdaChassis.color = Yellow;
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&AIzquierdaChassis.transform);
 	q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offsetAIzquierda(info.chassis_offset6.x, info.chassis_offset6.y, info.chassis_offset6.z);
 	offsetAIzquierda = offsetAIzquierda.rotate(q.getAxis(), q.getAngle());
