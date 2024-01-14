@@ -150,7 +150,7 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 	}
 
 	//checking for Lift force application
-	PhysVehicle3D* vehicle = App->player->vehicle; // Get the vehicle reference
+	vehicle = App->player->vehicle; // Get the vehicle reference
 	if (vehicle && liftEnabled) {
 		float liftCoefficient = 1.0f; // Define this based on your vehicle's characteristics
 		float speed = vehicle->GetKmh();

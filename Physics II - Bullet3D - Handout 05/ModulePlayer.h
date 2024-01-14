@@ -31,4 +31,8 @@ public:
 	bool isDrifting = false;
 	float half_width;
 	float half_length;
+
+	int counterForCoins;
+	int maxCoins;
+	int winConditionCoins;
 };

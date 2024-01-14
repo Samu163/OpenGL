@@ -81,7 +81,8 @@ bool ModuleSceneIntro::Start()
 	AddCube({ -539 + 782 + 600, 60.01, 643 - 200 }, { 30, 2, 100 }, Grey, 0, -90, 0);*/
 
 
-
+	//Monedas en inicio
+	AddCoin({ 0,100,30 }, Purple,0, 0, 0, 30, 1);
 
 	//Curva1 hacia la izquierda
 	/*AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
@@ -144,12 +145,7 @@ bool ModuleSceneIntro::Start()
 	AddCube({ 1383,80.02,-225 }, { 47, 0, 166 }, Purple, 0, -165, 0);
 	//recta
 
-
-	//ice
-
-
-
-
+	
 
 	return ret;
 }
@@ -177,6 +173,67 @@ update_status ModuleSceneIntro::Update(float dt)
 		c->data.Render();
 		c = c->next;
 	}
+	p2List_item<Coin>* currentItem4 = coins.getFirst();
+
+	while (currentItem4 != NULL) {
+
+		if (currentItem4->data.deleted == false) {
+			currentItem4->data.timer++;
+			currentItem4->data.cylinder.Render();
+
+			btVector3 boosterPos = currentItem4->data.body->GetPos();
+
+
+			btVector3 carPos = App->player->vehicle->GetPos();
+			float Xdistance = abs(boosterPos.x()) - abs(carPos.x());
+			float Ydistance = abs(boosterPos.y()) - abs(carPos.y());
+			float Zdistance = abs(boosterPos.z()) - abs(carPos.z());
+
+			btVector3 speed = currentItem4->data.body->body->getAngularVelocity();
+			speed.setY(10);
+
+			currentItem4->data.body->body->setAngularVelocity(speed);
+
+			currentItem4->data.cylinder.Update(currentItem4->data.body);
+
+			if (currentItem4->data.timer < 48)
+				currentItem4->data.body->body->setLinearVelocity(btVector3(0, 1, 0));
+			else
+				currentItem4->data.body->body->setLinearVelocity(btVector3(0, -1, 0));
+
+
+			currentItem4->data.cylinder.SetPos(boosterPos.x(), boosterPos.y(), boosterPos.z());
+
+			if (currentItem4->data.timer > 80) {
+				currentItem4->data.timer = 0;
+			}
+			// Homebrew collision detection for sensors
+			if ((Xdistance > -3 && Xdistance < 3) && (Ydistance > -3 && Ydistance < 3) && (Zdistance > -3 && Zdistance < 3)) {
+				LOG("car touch coing");
+
+				currentItem4->data.deleted = true;
+				App->player->counterForCoins++;
+				currentItem4 = currentItem4->next;
+				//App->audio->PlayFx(coinFx);
+
+
+			}
+			else {
+				currentItem4 = currentItem4->next;
+			}
+
+		}
+		else {
+			currentItem4 = currentItem4->next;
+		}
+
+
+
+	}
+
+
+
+
 
 	return UPDATE_CONTINUE;
 }
@@ -214,8 +271,6 @@ void ModuleSceneIntro::AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float
 	if (rotX != 0)
 		cube.SetRotation(rotX, { 1, 0, 0 });
 
-	
-
 	if (rotZ != 0)
 		cube.SetRotation(rotZ, { 0, 0, 1 });
 
@@ -225,5 +280,34 @@ void ModuleSceneIntro::AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+}
+
+
+void ModuleSceneIntro::AddCoin(vec3 pos, Color rgb, int angle, bool rot_X, bool rot_Y, bool rot_Z, int num)
+{
+	Cylinder cylinder;
+
+	cylinder.SetPos(pos.x, pos.y, pos.z);
+	cylinder.radius = 1;
+	cylinder.height = 0.15f;
+	cylinder.color = rgb;
+
+	if (rot_Y == true)
+		cylinder.SetRotation(angle, { 0, 1, 0 });
+
+	if (rot_X == true)
+		cylinder.SetRotation(angle, { 1, 0, 0 });
+
+	if (rot_Z == true)
+		cylinder.SetRotation(angle, { 0, 0, 1 });
+
+	Coin coin;
+	coin.body = App->physics->AddBody(cylinder, 1.0f);
+	coin.body->SetAsSensor(true);
+	coin.cylinder = cylinder;
+	coin.num = num;
+	coins.add(coin);
+
+
 }
 

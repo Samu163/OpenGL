@@ -67,6 +67,25 @@ void Primitive::Render() const
 	glPopMatrix();
 }
 
+void Primitive::Update(PhysBody3D* pA)
+{
+	//TODO 5: Set the primitive position and rotation to the PhysBody position and rotation
+
+	//btVector3 bv = pA->GetPosition();
+
+	//
+
+	//this->SetPos(bv.x(), bv.y(), bv.z());
+	//// how do i link the rotation ??
+
+	// automatically sets the object transform as the primitive transform
+	pA->GetTransform(&this->transform);
+
+	this->Render();
+
+}
+
+
 // ------------------------------------------------------------
 void Primitive::InnerRender() const
 {

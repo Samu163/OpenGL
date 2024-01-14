@@ -9,6 +9,19 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+
+
+struct Coin
+{
+	PhysBody3D* body;
+	Cylinder cylinder;
+	bool passed;
+	int timer = 0;
+	bool deleted = false;
+	int num;
+};
+
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -22,6 +35,7 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	void AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ);
 	void AddCylinder(vec3 pos, float radius, Color rgb, float rotX, float rotY, float rotZ);
+	void AddCoin(vec3 pos, Color rgb, int angle, bool rot_X, bool rot_Y, bool rot_Z, int num );
 
 public:
 	/*
@@ -45,4 +59,5 @@ public:
 	PhysMotor3D* right_wheel;
 
 	p2List<Cube> buildingBlocks;
+	p2List<Coin> coins;
 };

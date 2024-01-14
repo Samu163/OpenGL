@@ -26,6 +26,12 @@ void PhysBody3D::GetTransform(float* matrix) const
 		body->getWorldTransform().getOpenGLMatrix(matrix);
 	}
 }
+btVector3 PhysBody3D::GetPos()
+{
+	btVector3 pos = body->getWorldTransform().getOrigin();
+
+	return pos;
+}
 
 // ---------------------------------------------------------
 void PhysBody3D::SetTransform(const float* matrix) const
@@ -44,4 +50,16 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	btTransform t = body->getWorldTransform();
 	t.setOrigin(btVector3(x, y, z));
 	body->setWorldTransform(t);
+}
+
+void PhysBody3D::SetAsSensor(bool isSensor)
+{
+	if (this->isSensor != isSensor)
+	{
+		this->isSensor = isSensor;
+		if (isSensor == true)
+			body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		else
+			body->setCollisionFlags(body->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	}
 }

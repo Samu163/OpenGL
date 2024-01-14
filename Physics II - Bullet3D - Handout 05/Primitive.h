@@ -2,6 +2,8 @@
 #pragma once
 #include "glmath.h"
 #include "Color.h"
+#include "PhysBody3D.h"
+
 
 enum PrimitiveTypes
 {
@@ -25,6 +27,8 @@ public:
 	void			SetRotation(float angle, const vec3 &u);
 	void			Scale(float x, float y, float z);
 	PrimitiveTypes	GetType() const;
+	void Update(PhysBody3D* pA);
+
 
 public:
 	
