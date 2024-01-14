@@ -175,12 +175,12 @@ bool ModuleSceneIntro::Start()
 	AddCube({ 685,80.01,157.5 }, { 47, 0, 166 }, Carretera, 0, 0, 0);
 
 	//Cylinders
-	AddCylinder({ 685,78,157.5 - 320 }, 5, 200,Green, 0,0,0);
+	/*AddCylinder({ 685,78,157.5 - 320 }, 5, 200,Green, 0,0,0);
 	AddCylinder({ 685,78,157.5 - 330 }, 5, 200,Green, 0,0,0);
 	AddCylinder({ 685,78,157.5 - 310}, 5, 200,Green, 0,0,0);
 	AddCylinder({ 685,78,157.5 - 300}, 5, 200,Green, 0,0,0);
 	AddCylinder({ 685,78,157.5 - 290}, 5, 200,Green, 0,0,0);
-	AddCylinder({ 685,78,157.5 - 280}, 5, 200,Green, 0,0,0);
+	AddCylinder({ 685,78,157.5 - 280}, 5, 200,Green, 0,0,0);*/
 
 
 	//zona de hielo
@@ -345,6 +345,7 @@ update_status ModuleSceneIntro::Update(float dt)
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		App->player->vehicle->SetTransform(orientationMat);
 		App->player->vehicle->SetPos(App->player->lastCheckPoint.x, App->player->lastCheckPoint.y, App->player->lastCheckPoint.z);
+		App->player->numLifes--;
 		
 	}
 	p2List_item<Cube>* c = buildingBlocks.getFirst();

@@ -50,4 +50,8 @@ public:
 
 	//Bool for jumping
 	bool isJumping;
+
+
+	//lifes 
+	int numLifes = 5;
 };
