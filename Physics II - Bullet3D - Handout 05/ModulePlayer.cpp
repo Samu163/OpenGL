@@ -224,7 +224,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	// Lift force stuffs
-	// Toggle lift force with a key press (e.g., the 'L' key)
+	
 	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
 		App->physics->liftEnabled = !App->physics->liftEnabled;
 
@@ -233,6 +233,18 @@ update_status ModulePlayer::Update(float dt)
 			App->physics->liftForce.setValue(0, 0, 0);
 		}
 	}
+
+	// Drag force stuffs
+	
+	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
+		App->physics->dragEnabled = !App->physics->dragEnabled;
+
+		//eset the drag force vector when disabling drag
+		if (!App->physics->dragEnabled) {
+			App->physics->dragForce.setValue(0, 0, 0);
+		}
+	}
+
 
 
 
@@ -254,12 +266,13 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	//display the speed of the car
-	char title[120];
-	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s",
+	char title[150];
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Drag: %s",
 		vehicle->GetKmh(),
 		App->physics->gravityEnabled ? "Enabled" : "Disabled",
 		App->physics->currentGravity.getY(),
-		App->physics->liftEnabled ? "Enabled" : "Disabled");
+		App->physics->liftEnabled ? "Enabled" : "Disabled",
+		App->physics->dragEnabled ? "Enabled" : "Disabled");
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;

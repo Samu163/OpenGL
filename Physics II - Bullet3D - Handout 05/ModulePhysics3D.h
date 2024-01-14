@@ -30,6 +30,10 @@ public:
 	bool liftEnabled;  // To keep track of the lift force state
 	btVector3 liftForce; // The lift force vector
 
+	//Drag Force variables
+	bool dragEnabled;  // To keep track of the drag force state
+	btVector3 dragForce; // The drag force vector
+
 	bool Init();
 	bool Start();
 	update_status PreUpdate(float dt);

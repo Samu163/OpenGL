@@ -16,10 +16,19 @@
 	#pragma comment (lib, "Bullet/libx86/BulletCollision.lib")
 	#pragma comment (lib, "Bullet/libx86/LinearMath.lib")
 #endif
-
+//extra forces functions
 static btVector3 CalculateLiftForce(float speed, float liftCoefficient) {
 	return btVector3(0, liftCoefficient * speed * speed, 0);
 }
+
+static btVector3 CalculateDragForce(float speed, float dragCoefficient) {
+	// Drag force is proportional to the square of the speed
+	float forceMagnitude = dragCoefficient * speed * speed;
+	// Assuming drag acts in the opposite direction to the vehicle's forward movement
+	return btVector3(0, 0, -forceMagnitude);
+}
+
+
 
 ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(app, start_enabled), currentGravity(0.0f, -10.0f, 0.0f), gravityEnabled(true)
 {
@@ -34,6 +43,10 @@ ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(
 	//liftforce related
 	liftEnabled = false; // Lift force is initially off
 	liftForce = btVector3(0.0f, 0.0f, 0.0f); // No lift force to begin with
+
+	//dragforce related
+	dragEnabled = false; // Drag force is initially off
+	dragForce = btVector3(0.0f, 0.0f, 0.0f); // No drag force to begin with
 }
 
 // Destructor
@@ -118,12 +131,12 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 		}
 	}
 
-
+	//checking for Lift force application
 	PhysVehicle3D* vehicle = App->player->vehicle; // Get the vehicle reference
 	if (vehicle && liftEnabled) {
 		float liftCoefficient = 1.0f; // Define this based on your vehicle's characteristics
 		float speed = vehicle->GetKmh();
-		if (speed > 40) {
+		if (speed > 100) {
 			//liftForce = btVector3(0, liftCoefficient * speed * speed, 0);
 			btVector3 liftForce = CalculateLiftForce(speed, liftCoefficient); 
 			vehicle->GetRigidBody()->applyCentralForce(liftForce);
@@ -134,6 +147,19 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 		// If lift is not enabled, ensure no lift force is being applied
 		liftForce = btVector3(0.0f, 0.0f, 0.0f);
 	}
+
+	//Drag Force Application
+	if (vehicle && dragEnabled) {
+		float dragCoefficient = 0.5f; // Define this based on your vehicle's characteristics
+		float speed = vehicle->GetKmh();
+		btVector3 dragForce = CalculateLiftForce(speed, dragCoefficient);
+		vehicle->GetRigidBody()->applyCentralForce(-dragForce);
+	}
+	else {
+		// If drag is not enabled, ensure no drag force is being applied
+		dragForce = btVector3(0.0f, 0.0f, 0.0f);
+	}
+
 
 
 
