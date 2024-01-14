@@ -190,6 +190,26 @@ update_status ModulePlayer::Update(float dt)
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
 	}
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
+		//Apear in Checkpoint
+		float orientationMat[16];
+		memset(orientationMat, 1.0f, sizeof(orientationMat));
+		vehicle->SetTransform(orientationMat);
+		vehicle->SetPos(9 - 1500+5, 88.02, -10);
+
+		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
+
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
+		//Apear in Checkpoint
+		float orientationMat[16];
+		memset(orientationMat, 1.0f, sizeof(orientationMat));
+		vehicle->SetTransform(orientationMat);
+		vehicle->SetPos(9 - 1500 + 5, 88.02+1000, -10);
+
+		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
+
+	}
 	//Change size of vehicle
 	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
 	{
