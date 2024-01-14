@@ -25,6 +25,7 @@ public:
 	vec3 lastCheckPoint = { 0,85,0 };
 	//vehicle stuf
 	PhysVehicle3D* vehicle;
+	PhysVehicle3D* vehicle2;
 	float turn;
 	float acceleration;
 	float brake;
@@ -34,7 +35,7 @@ public:
 	float half_length;
 
 	//Coutner for win / Lose condition
-	int counterForCoins;
+	int counterForCoins = 0;
 	int maxCoins;
 	int winConditionCoins;
 
