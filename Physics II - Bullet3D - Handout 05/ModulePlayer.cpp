@@ -413,7 +413,7 @@ update_status ModulePlayer::Update(float dt)
 
 	//display the speed of the car
 	char title[150];
-	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Drag: %s | Friction:%.1f | Mass:%.1f | Coins:%d",
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Drag: %s | Friction:%.1f | Mass:%.1f | Coins:%d/10",
 		vehicle->GetKmh(),
 		App->physics->gravityEnabled ? "Enabled" : "Disabled",
 		App->physics->currentGravity.getY(),
