@@ -19,8 +19,8 @@ ModuleSceneIntro::~ModuleSceneIntro()
 bool ModuleSceneIntro::Start()
 {
 
-	//App->audio->PlayMusic("assets/Night.wav", 0.0f);
-    coinFx = App->audio->LoadFx("assets/drifting.ogg");
+	App->audio->PlayMusic("assets/Night.wav", 0.0f);
+    coinFx = App->audio->LoadFx("assets/coin.ogg");
 	LOG("Loading Intro assets");
 	bool ret = true;
 
@@ -116,9 +116,8 @@ bool ModuleSceneIntro::Start()
 
 	//Monedas en inicio
 	AddCoin({ 0,82,30 }, Yellow, 0, 0, 0, 30, 1);
-	AddCoin({ 0,82,300 }, Yellow, 0, 0, 0, 30, 1);
-
-
+	AddCoin({ -50,82, 570 }, Yellow, 0, 0, 0, 30, 1);
+	
 	AddCube({ 0,100.01, -200 }, { 47, 0, 120+20 }, Carretera, -20, 0, 0);
 	//rampa-Curva
 	AddCube({ 0,80.02, -455 +45}, { 47, 0, 166+120 }, Carretera, 0, 0, 0);

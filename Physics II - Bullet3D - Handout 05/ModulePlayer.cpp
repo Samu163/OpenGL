@@ -20,6 +20,9 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 	driftFx = App->audio->LoadFx("assets/drifting.ogg");
+	WinFx = App->audio->LoadFx("assets/win.ogg");
+	
+	LooseFx = App->audio->LoadFx("assets/loose.ogg");
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -144,6 +147,11 @@ update_status ModulePlayer::Update(float dt)
 		vehicle->SetTransform(orientationMat);
 		vehicle->SetPos(9 - 1500 + 5, 88.02, -10);
 
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(WinFx);
+		
+
+
 	}
 
 
@@ -192,6 +200,8 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 		//Apear in Checkpoint
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(WinFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
@@ -202,6 +212,9 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
 		//Apear in Checkpoint
+
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(LooseFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
@@ -280,28 +293,13 @@ update_status ModulePlayer::Update(float dt)
 		if (turn > -angle)
 			turn -= angle;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		//Brake power, decrease it to brake slower 
-		angle = 5.0f * DEGTORAD;
-		if (vehicle->info.frictionSlip < 50) 
-		{
-			acceleration = -MAX_ACCELERATION*3;
-		}
-		else
-		{
-			acceleration = -MAX_ACCELERATION * 10;
-		}
-		if (vehicle->GetKmh() < 0) {
-			acceleration = -MAX_ACCELERATION;
-		}
-	}
+
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			App->audio->PlayFx(driftFx);
+		
 			acceleration = -MAX_ACCELERATION;
 			if (vehicle->info.frictionSlip > 50)
 			{
@@ -326,7 +324,22 @@ update_status ModulePlayer::Update(float dt)
 		if (turn < angle)
 			turn += angle;
 	}
-
+	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
+		//Brake power, decrease it to brake slower 
+		angle = 50.0f * DEGTORAD;
+		if (vehicle->info.frictionSlip < 50)
+		{
+			acceleration = -MAX_ACCELERATION * 3;
+		}
+		else
+		{
+			acceleration = -MAX_ACCELERATION * 10;
+		}
+		if (vehicle->GetKmh() < 0) {
+			acceleration = -MAX_ACCELERATION;
+		}
+	}
 	//Player Debug Keys
 	//Gravity stuffs
 	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
