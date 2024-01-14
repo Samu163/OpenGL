@@ -20,6 +20,9 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 	driftFx = App->audio->LoadFx("assets/drifting.ogg");
+	WinFx = App->audio->LoadFx("assets/win.ogg");
+	
+	LooseFx = App->audio->LoadFx("assets/loose.ogg");
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -143,18 +146,25 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		lastCheckPoint = (9 - 1500 + 5, 88.02, -10);
-		vehicle->SetPos(9 - 1500 + 5, 88.02, -10);
+		lastCheckPoint = (9 - 1500 + 5, 82.02, -10);
+		vehicle->SetPos(9 - 1500 + 5, 82.02, -10);
 		counterForCoins = 0;
+
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(WinFx);
+		
+
 
 	}
 	//Lose Condition
 	if (numLifes <= 0) {
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(LooseFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		lastCheckPoint = (9 - 1500 + 5, 88.02 + 1000, -10);
-		vehicle->SetPos(9 - 1500 + 5, 88.02 + 1000, -10);
+		lastCheckPoint = (9 - 1500 + 5, 82.02 + 1000, -10);
+		vehicle->SetPos(9 - 1500 + 5, 82.02 + 1000, -10);
 		numLifes = 5;
 	}
 
@@ -204,20 +214,25 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 		//Apear in Checkpoint
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(WinFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		vehicle->SetPos(9 - 1500+5, 88.02, -10);
+		vehicle->SetPos(9 - 1500+5, 82.02, -10);
 
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
 		//Apear in Checkpoint
+
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(LooseFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		vehicle->SetPos(9 - 1500 + 5, 88.02+1000, -10);
+		vehicle->SetPos(9 - 1500 + 5, 82.02+1000, -10);
 
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
@@ -298,13 +313,10 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->info.frictionSlip < 50) {
 			angle = 0.5f * DEGTORAD;
 		}
-		else
-		{
-			angle = TURN_DEGREES;
-		}
 		if (turn > -angle)
 			turn -= angle;
 	}
+
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		//Brake power, decrease it to brake slower 
@@ -322,11 +334,12 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
+
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			App->audio->PlayFx(driftFx);
+		
 			acceleration = -MAX_ACCELERATION;
 			if (vehicle->info.frictionSlip > 50)
 			{
@@ -356,13 +369,10 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->info.frictionSlip < 50) {
 			angle = 0.5f * DEGTORAD;
 		}
-		else
-		{
-			angle = TURN_DEGREES;
-		}
 		if (turn < angle)
 			turn += angle;
 	}
+
 
 
 	//Player Debug Keys
