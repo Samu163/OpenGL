@@ -158,6 +158,8 @@ update_status ModulePlayer::Update(float dt)
 	}
 	//Lose Condition
 	if (numLifes <= 0) {
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(LooseFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
