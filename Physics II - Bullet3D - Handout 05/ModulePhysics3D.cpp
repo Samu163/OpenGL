@@ -97,6 +97,24 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 {
 	//Aplicar una fuerza al btBody antes de stepSimulation
 	//Include the formulas from the theory project here and apply the force in the line bellow
+
+
+	PhysVehicle3D* vehicle = App->player->vehicle; // Get the vehicle reference
+	if (vehicle && liftEnabled) {
+		float liftCoefficient = 1.0f; // Define this based on your vehicle's characteristics
+		float speed = vehicle->GetKmh();
+		if (speed > 40) {
+			//liftForce = btVector3(0, liftCoefficient * speed * speed, 0);
+			btVector3 liftForce = CalculateLiftForce(speed, liftCoefficient);
+			vehicle->GetRigidBody()->applyCentralForce(liftForce);
+		}
+
+	}
+	else {
+		// If lift is not enabled, ensure no lift force is being applied
+		liftForce = btVector3(0.0f, 0.0f, 0.0f);
+	}
+
 	world->stepSimulation(dt, 15);
 
 	int numManifolds = world->getDispatcher()->getNumManifolds();
@@ -147,6 +165,8 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 		// If lift is not enabled, ensure no lift force is being applied
 		liftForce = btVector3(0.0f, 0.0f, 0.0f);
 	}
+
+	
 
 	//Drag Force Application
 	if (vehicle && dragEnabled) {

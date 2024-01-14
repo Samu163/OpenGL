@@ -21,7 +21,7 @@ public:
 	bool CleanUp();
 	
 public:
-
+	int driftFx;
 	vec3 lastCheckPoint = { 0,85,0 };
 	PhysVehicle3D* vehicle;
 	float turn;
