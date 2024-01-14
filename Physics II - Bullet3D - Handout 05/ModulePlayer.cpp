@@ -146,8 +146,8 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		lastCheckPoint = (9 - 1500 + 5, 88.02, -10);
-		vehicle->SetPos(9 - 1500 + 5, 88.02, -10);
+		lastCheckPoint = (9 - 1500 + 5, 82.02, -10);
+		vehicle->SetPos(9 - 1500 + 5, 82.02, -10);
 		counterForCoins = 0;
 
 		App->audio->PlayMusic("assets/.ogg", 1.0f);
@@ -161,8 +161,8 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		lastCheckPoint = (9 - 1500 + 5, 88.02 + 1000, -10);
-		vehicle->SetPos(9 - 1500 + 5, 88.02 + 1000, -10);
+		lastCheckPoint = (9 - 1500 + 5, 82.02 + 1000, -10);
+		vehicle->SetPos(9 - 1500 + 5, 82.02 + 1000, -10);
 		numLifes = 5;
 	}
 
@@ -217,7 +217,7 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		vehicle->SetPos(9 - 1500+5, 88.02, -10);
+		vehicle->SetPos(9 - 1500+5, 82.02, -10);
 
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
@@ -230,7 +230,7 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		vehicle->SetPos(9 - 1500 + 5, 88.02+1000, -10);
+		vehicle->SetPos(9 - 1500 + 5, 82.02+1000, -10);
 
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
