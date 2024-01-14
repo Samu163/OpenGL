@@ -34,3 +34,5 @@ extern Color Grey;
 extern Color  Purple;
 extern Color  Marron;
 extern Color  Amarillo;
+extern Color  Naranja;
+extern Color  Verde;

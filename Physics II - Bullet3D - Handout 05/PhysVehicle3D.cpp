@@ -25,7 +25,7 @@ void PhysVehicle3D::Render()
 {
 	Cylinder wheel;
 
-	wheel.color = Black;
+	wheel.color = Verde;
 
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
@@ -41,33 +41,34 @@ void PhysVehicle3D::Render()
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
 	
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
+	chassis.color = Amarillo;
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
 	offset = offset.rotate(q.getAxis(), q.getAngle());
 
 	Cube FrontChassis(info.chassis_size2.x, info.chassis_size2.y, info.chassis_size2.z);
-	FrontChassis.color = Black;
+	FrontChassis.color = Marron;
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&FrontChassis.transform);
 	q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offsetFront(info.chassis_offset2.x, info.chassis_offset2.y, info.chassis_offset2.z);
 	offsetFront = offsetFront.rotate(q.getAxis(), q.getAngle());
 
 	Cube CabinaChassis(info.chassis_size3.x, info.chassis_size3.y, info.chassis_size3.z);
-	CabinaChassis.color = White;
+	CabinaChassis.color = Naranja;
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&CabinaChassis.transform);
 	q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offsetCabina(info.chassis_offset3.x, info.chassis_offset3.y, info.chassis_offset3.z);
 	offsetCabina = offsetCabina.rotate(q.getAxis(), q.getAngle());
 	//Soportes
 	Cube DIzquierdaChassis(info.chassis_size4.x, info.chassis_size4.y, info.chassis_size4.z);
-	DIzquierdaChassis.color = Grey;
+	DIzquierdaChassis.color = Green;
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&DIzquierdaChassis.transform);
 	q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offsetDIzquierda(info.chassis_offset4.x, info.chassis_offset4.y, info.chassis_offset4.z);
 	offsetDIzquierda = offsetDIzquierda.rotate(q.getAxis(), q.getAngle());
 
 	Cube DDerchaChassis(info.chassis_size5.x, info.chassis_size5.y, info.chassis_size5.z);
-	DDerchaChassis.color = Grey;
+	DDerchaChassis.color = Blue;
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&DDerchaChassis.transform);
 	q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offsetDDercha(info.chassis_offset5.x, info.chassis_offset5.y, info.chassis_offset5.z);

@@ -23,20 +23,21 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 0.7, 4);
+	car.chassis_size.Set(2, 1.5, 4);
 	car.chassis_offset.Set(0, 1.3, 0);
 
-	car.chassis_size2.Set(2.01, 0.2, 2.01);
-	car.chassis_offset2.Set(0, 1.3, 0);
+	car.chassis_size2.Set(2.2, 0.3, 4.2);
+	car.chassis_offset2.Set(0, 1.1, 0);
 
-	//car.chassis_size3.Set(2, 0.2, 2);
-	//car.chassis_offset3.Set(0, 4, 0);
+	car.chassis_size3.Set(2.1, 0.2, 4.1);
+	car.chassis_offset3.Set(0, 1.3, 0);
 
-	car.chassis_size4.Set(0.2,0.2, 0.2);
-	car.chassis_offset4.Set(0.7, 2, 0);
+	car.chassis_size4.Set(2.2,0.2, 4.2);
+	car.chassis_offset4.Set(0, 1.5, 0);
 
-	/*car.chassis_size5.Set(2, 2, 2);
-	car.chassis_offset5.Set(0, 0, 0);
+	car.chassis_size5.Set(1.5, 0.3, 0.2);
+	car.chassis_offset5.Set(0, 2.2, 1);
+	/*
 
 	car.chassis_size6.Set(2, 2, 2);
 	car.chassis_offset6.Set(0, 0, 0);
@@ -55,9 +56,9 @@ bool ModulePlayer::Start()
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
-	float wheel_radius = 0.3f;
+	float wheel_radius = 0.4f;
 	float wheel_width = 0.5f;
-	float suspensionRestLength = 1.2f;
+	float suspensionRestLength = 1.5f;
 
 	// Don't change anything below this line ------------------
 
