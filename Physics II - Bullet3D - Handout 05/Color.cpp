@@ -13,3 +13,4 @@ Color Naranja = Color(0.59f, 0.13f, 0.0f);
 Color Marron= Color(0.54f, 0.27f, 0.19f);
 Color Amarillo= Color(0.97f, 0.59f, 0.08f);
 Color Yellow = Color(0.92f, 0.96f, 0.15f);
+Color Carretera = Color(0.1333f, 0.1784f, 0.1686f);
