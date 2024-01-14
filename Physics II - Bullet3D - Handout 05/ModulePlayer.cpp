@@ -120,7 +120,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(1383 , 150, -225 );
+	vehicle->SetPos(685, 150, 157.5 - 480);
 	
 	return true;
 }
@@ -136,6 +136,12 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	if (counterForCoins >= 10) 
+	{
+		//Teleport player to the winning zone 
+	}
+
+
 	//Barro 
 	if (vehicle->GetPos().x() < 1383 + 47 && vehicle->GetPos().x() > 1383 - 47
 		&& vehicle->GetPos().z() < -225 + 166 && vehicle->GetPos().z() > -225 - 166) 
@@ -146,6 +152,19 @@ update_status ModulePlayer::Update(float dt)
 	{
 		vehicle->info.frictionSlip = 50;
 	}
+	
+	//Ice
+	if (vehicle->GetPos().x() < 685 + 141 && vehicle->GetPos().x() > 685 - 141
+		&& vehicle->GetPos().z() > 157.5 - 480 -166 && vehicle->GetPos().z() < 157.5 + 166)
+	{
+		vehicle->info.frictionSlip = 1.5;
+	}
+	else
+	{
+		vehicle->info.frictionSlip = 50;
+	}
+
+
 
 
 	//Change the mass of the vehicle, the original mass is 500
@@ -251,8 +270,6 @@ update_status ModulePlayer::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-
-
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
 			App->audio->PlayFx(driftFx);

@@ -84,8 +84,8 @@ bool ModuleSceneIntro::Start()
 
 
 	//Monedas en inicio
-	AddCoin({ 0,80,30 }, Purple, 0, 0, 0, 30, 1);
-	AddCoin({ 0,80,300 }, Purple, 0, 0, 0, 30, 1);
+	AddCoin({ 0,80,30 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 0,80,300 }, Yellow, 0, 0, 0, 30, 1);
 
 
 
@@ -131,7 +131,7 @@ bool ModuleSceneIntro::Start()
 
 
 
-	///zona pequeña
+	//zona de hielo
 	AddCube({ 685,80.02,157.5 - 160 }, { 47, 0, 166 }, Purple, 0, 0, 0);
 	AddCube({ 685,80.01,157.5 - 160 - 160 }, { 47, 0, 166 }, Purple, 0, 0, 0);
 	AddCube({ 685,80.02,157.5 - 160 - 160 - 160 }, { 47, 0, 166 }, Purple, 0, 0, 0);
@@ -147,6 +147,8 @@ bool ModuleSceneIntro::Start()
 	AddCube({ 1176,80.02,-605 }, { 47, 0, 166 }, Purple, 0, -150, 0);
 	AddCube({ 1250,80.02,-485 }, { 47, 0, 166 }, Purple, 0, -150, 0);
 	AddCube({ 1325,80.02,-365 }, { 47, 0, 166 }, Purple, 0, -150, 0);
+
+	//barro
 	AddCube({ 1383,120.02,-225 }, { 47, 0, 166 }, Purple, 0, -165, 0);
 	AddCube({ 1325,120.02,-365 }, { 47, 60, 47 }, Purple, 0, -165, 0);
 	//recta

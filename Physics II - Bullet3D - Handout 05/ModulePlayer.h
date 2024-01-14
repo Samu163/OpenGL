@@ -37,7 +37,9 @@ public:
 	//Coutner for win / Lose condition
 	int counterForCoins = 0;
 	int maxCoins;
-	int winConditionCoins;
+	int winConditionCoins = 10;
+
+	//Lifes of the player 
 
 	//Jumping Counters
 	int jumpingCounter = 0;
