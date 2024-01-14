@@ -120,7 +120,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 85, 0);
+	vehicle->SetPos(1383 , 150, -225 );
 	
 	return true;
 }
@@ -136,6 +136,18 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	//Barro 
+	if (vehicle->GetPos().x() < 1383 + 47 && vehicle->GetPos().x() > 1383 - 47
+		&& vehicle->GetPos().z() < -225 + 166 && vehicle->GetPos().z() > -225 - 166) 
+	{
+		vehicle->info.frictionSlip = 100;
+	}
+	else
+	{
+		vehicle->info.frictionSlip = 50;
+	}
+
+
 	//Change the mass of the vehicle, the original mass is 500
 	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
 	{
@@ -181,9 +193,18 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION*3;
 		//cambiar el tama�o del coche
 		//vehicle->info.chassis_size.Set(2, 3.5, 4);
+
+		if (vehicle->info.frictionSlip > 50)
+		{
+			velocityLimit = 90;
+			acceleration = MAX_ACCELERATION/2 ;
+		}
+		else
+		{
+			acceleration = MAX_ACCELERATION * 3;
+		}
 
 	}
 
@@ -222,7 +243,6 @@ update_status ModulePlayer::Update(float dt)
 		else
 		{
 			acceleration = -MAX_ACCELERATION * 10;
-
 		}
 		if (vehicle->GetKmh() < 0) {
 			acceleration = -MAX_ACCELERATION;
@@ -309,6 +329,7 @@ update_status ModulePlayer::Update(float dt)
 		isJumping = true;
 	}
 	if (isJumping) {
+
 		jumpingCounter++;
 		if (jumpingCounter > jumpingCooldown) {
 			jumpingCounter = 0;
@@ -334,14 +355,15 @@ update_status ModulePlayer::Update(float dt)
 
 	//display the speed of the car
 	char title[150];
-	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Drag: %s | Friction:%.1f | Mass:%.1f",
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Drag: %s | Friction:%.1f | Mass:%.1f | Coins:%d",
 		vehicle->GetKmh(),
 		App->physics->gravityEnabled ? "Enabled" : "Disabled",
 		App->physics->currentGravity.getY(),
 		App->physics->liftEnabled ? "Enabled" : "Disabled",
 		App->physics->dragEnabled ? "Enabled" : "Disabled",
 		vehicle->info.frictionSlip,
-		vehicle->info.mass);
+		vehicle->info.mass,
+		counterForCoins);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
