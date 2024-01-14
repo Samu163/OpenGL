@@ -139,6 +139,10 @@ update_status ModulePlayer::Update(float dt)
 	if (counterForCoins >= 10) 
 	{
 		//Teleport player to the winning zone 
+		float orientationMat[16];
+		memset(orientationMat, 1.0f, sizeof(orientationMat));
+		vehicle->SetTransform(orientationMat);
+		vehicle->SetPos(9 - 1500 + 5, 88.02, -10);
 
 	}
 
