@@ -17,14 +17,26 @@
 	#pragma comment (lib, "Bullet/libx86/LinearMath.lib")
 #endif
 //extra forces functions
+//calculating lift force, cap the maximum lift force, and apply it to the vehicle
 static btVector3 CalculateLiftForce(float speed, float liftCoefficient) {
-	return btVector3(0, liftCoefficient * speed * speed, 0);
+	// Lift force is proportional to the square of the speed
+	float forceMagnitude = liftCoefficient * speed * speed;
+	// cap the maximum lift force
+	if (forceMagnitude > 6000.0f) {
+		forceMagnitude = 6000.0f;
+	}
+	// Assuming lift acts in the opposite direction to the vehicle's up direction
+	return btVector3(0, forceMagnitude, 0);
+
 }
 
 static btVector3 CalculateDragForce(float speed, float dragCoefficient) {
 	// Drag force is proportional to the square of the speed
 	float forceMagnitude = dragCoefficient * speed * speed;
 	// Assuming drag acts in the opposite direction to the vehicle's forward movement
+	if (forceMagnitude > 500.0f) {
+		forceMagnitude = 500.0f;
+	}
 	return btVector3(0, 0, -forceMagnitude);
 }
 
@@ -101,10 +113,9 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 
 	PhysVehicle3D* vehicle = App->player->vehicle; // Get the vehicle reference
 	if (vehicle && liftEnabled) {
-		float liftCoefficient = 1.0f; // Define this based on your vehicle's characteristics
+		float liftCoefficient = 0.0001f; 
 		float speed = vehicle->GetKmh();
-		if (speed > 70) {
-			//liftForce = btVector3(0, liftCoefficient * speed * speed, 0);
+		if (speed > 120) {
 			btVector3 liftForce = CalculateLiftForce(speed, liftCoefficient);
 			vehicle->GetRigidBody()->applyCentralForce(liftForce);
 		}
