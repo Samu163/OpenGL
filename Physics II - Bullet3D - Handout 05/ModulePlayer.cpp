@@ -21,7 +21,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 	driftFx = App->audio->LoadFx("assets/drifting.ogg");
 	WinFx = App->audio->LoadFx("assets/win.ogg");
-	
+
 	LooseFx = App->audio->LoadFx("assets/loose.ogg");
 	VehicleInfo car;
 
@@ -35,12 +35,12 @@ bool ModulePlayer::Start()
 	car.chassis_size3.Set(2.1, 0.2, 4.1);
 	car.chassis_offset3.Set(0, 1.3, 0);
 
-	car.chassis_size4.Set(2.2,0.2, 4.2);
+	car.chassis_size4.Set(2.2, 0.2, 4.2);
 	car.chassis_offset4.Set(0, 1.5, 0);
 
 	car.chassis_size5.Set(1.5, 0.3, 0.2);
 	car.chassis_offset5.Set(0, 2.2, 1);
-	
+
 
 	car.chassis_size6.Set(1, 0.9, 0.5);
 	car.chassis_offset6.Set(0, 2.2, -1.4);
@@ -65,12 +65,12 @@ bool ModulePlayer::Start()
 
 	// Don't change anything below this line ------------------
 
-	float half_width = car.chassis_size.x*0.5f;
-	float half_length = car.chassis_size.z*0.5f;
-	
-	vec3 direction(0,-1,0);
-	vec3 axis(-1,0,0);
-	
+	float half_width = car.chassis_size.x * 0.5f;
+	float half_length = car.chassis_size.z * 0.5f;
+
+	vec3 direction(0, -1, 0);
+	vec3 axis(-1, 0, 0);
+
 	car.num_wheels = 4;
 	car.wheels = new Wheel[4];
 
@@ -124,7 +124,7 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 85, 0);
-	
+
 	return true;
 }
 
@@ -146,44 +146,51 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		lastCheckPoint = (9 - 1500 + 5, 82.02, -10);
-		vehicle->SetPos(9 - 1500 + 5, 82.02, -10);
+		lastCheckPoint = (9 - 1500 + 5, 88.02, -10);
+		vehicle->SetPos(9 - 1500 + 5, 88.02, -10);
 		counterForCoins = 0;
 
 		App->audio->PlayMusic("assets/.ogg", 1.0f);
 		App->audio->PlayFx(WinFx);
-		
+
 
 
 	}
 	//Lose Condition
 	if (numLifes <= 0) {
-		App->audio->PlayMusic("assets/.ogg", 1.0f);
-		App->audio->PlayFx(LooseFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		lastCheckPoint = (9 - 1500 + 5, 82.02 + 1000, -10);
-		vehicle->SetPos(9 - 1500 + 5, 82.02 + 1000, -10);
+		lastCheckPoint = (9 - 1500 + 5, 88.02 + 1000, -10);
+		vehicle->SetPos(9 - 1500 + 5, 88.02 + 1000, -10);
 		numLifes = 5;
 	}
 
 	//Barro 
 	if (vehicle->GetPos().x() < 1383 + 47 && vehicle->GetPos().x() > 1383 - 47
-		&& vehicle->GetPos().z() < -225 + 166 && vehicle->GetPos().z() > -225 - 166) 
+		&& vehicle->GetPos().z() < -225 + 166 && vehicle->GetPos().z() > -225 - 166)
 	{
-		vehicle->info.frictionSlip = 100;
+		if (!isOnDebug)
+		{
+			vehicle->info.frictionSlip = 100;
+		}
 	}
 	else
 	{
-		vehicle->info.frictionSlip = 50;
+		if (!isOnDebug)
+		{
+			vehicle->info.frictionSlip = 50;
+		}
 	}
-	
+
 	//Ice
 	if (vehicle->GetPos().x() < 685 + 141 && vehicle->GetPos().x() > 685 - 141
 		&& vehicle->GetPos().z() > 157.5 - 480 - 166 && vehicle->GetPos().z() < 100)
 	{
-		vehicle->info.frictionSlip = 1.5;
+		if (!isOnDebug)
+		{
+			vehicle->info.frictionSlip = 1.5;
+		}
 	}
 
 
@@ -219,7 +226,7 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		vehicle->SetPos(9 - 1500+5, 82.02, -10);
+		vehicle->SetPos(9 - 1500 + 5, 88.02, -10);
 
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
@@ -232,7 +239,7 @@ update_status ModulePlayer::Update(float dt)
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
-		vehicle->SetPos(9 - 1500 + 5, 82.02+1000, -10);
+		vehicle->SetPos(9 - 1500 + 5, 88.02 + 1000, -10);
 
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
@@ -247,18 +254,24 @@ update_status ModulePlayer::Update(float dt)
 	//Change friction
 	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 	{
+		isOnDebug = true;
 		vehicle->info.frictionSlip = 1.5f;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 	{
+		isOnDebug = true;
 		vehicle->info.frictionSlip = 50.0f;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+	{
+		isOnDebug = false;
 	}
 
 	turn = acceleration = brake = 0.0f;
 
 	float angle = TURN_DEGREES;
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		//cambiar el tama�o del coche
 		//vehicle->info.chassis_size.Set(2, 3.5, 4);
@@ -266,7 +279,7 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->info.frictionSlip > 50)
 		{
 			velocityLimit = 90;
-			acceleration = MAX_ACCELERATION/2 ;
+			acceleration = MAX_ACCELERATION / 2;
 		}
 		else
 		{
@@ -313,6 +326,10 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->info.frictionSlip < 50) {
 			angle = 0.5f * DEGTORAD;
 		}
+		if (isReducing) {
+			angle = 15.0f * DEGTORAD;
+
+		}
 		if (turn > -angle)
 			turn -= angle;
 	}
@@ -321,6 +338,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 		//Brake power, decrease it to brake slower 
 		angle = 5.0f * DEGTORAD;
+		isReducing = true;
 		if (vehicle->info.frictionSlip < 50)
 		{
 			acceleration = -MAX_ACCELERATION * 3;
@@ -333,13 +351,17 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = -MAX_ACCELERATION;
 		}
 	}
+	else
+	{
+		isReducing = false;
+	}
 
 
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-		
+
 			acceleration = -MAX_ACCELERATION;
 			if (vehicle->info.frictionSlip > 50)
 			{
@@ -369,6 +391,10 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->info.frictionSlip < 50) {
 			angle = 0.5f * DEGTORAD;
 		}
+		if (isReducing) {
+			angle = 15.0f * DEGTORAD;
+
+		}
 		if (turn < angle)
 			turn += angle;
 	}
@@ -389,19 +415,19 @@ update_status ModulePlayer::Update(float dt)
 	// Toggle gravity with a key press (e.g., the 'G' key), if press again, switch to normal gravity
 	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN) {
 		if (App->physics->gravityEnabled) {
-			App->physics->currentGravity.setY(0.0f);
+			App->physics->currentGravity.setY(0.0f); // Normal gravity
 			App->physics->ChangeGravity(App->physics->currentGravity.getY());
 			App->physics->gravityEnabled = false;
 		}
 		else {
-			App->physics->currentGravity.setY(-10.0f);
+			App->physics->currentGravity.setY(-10.0f); // Normal gravity
 			App->physics->ChangeGravity(App->physics->currentGravity.getY());
 			App->physics->gravityEnabled = true;
 		}
 	}
 
 	// Lift force stuffs
-	
+
 	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
 		App->physics->liftEnabled = !App->physics->liftEnabled;
 
@@ -412,7 +438,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	// Drag force stuffs
-	
+
 	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
 		App->physics->dragEnabled = !App->physics->dragEnabled;
 
@@ -427,14 +453,14 @@ update_status ModulePlayer::Update(float dt)
 
 	//Jump
 	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN && !isJumping) {
-		vehicle->Push(0, vehicle->info.mass*10, 0);
+		vehicle->Push(0, vehicle->info.mass * 10, 0);
 		isJumping = true;
 	}
 	if (isJumping) {
 
 		jumpingCounter++;
 		if (jumpingCounter > jumpingCooldown) {
-			
+
 			jumpingCounter = 0;
 			isJumping = false;
 		}
@@ -450,14 +476,17 @@ update_status ModulePlayer::Update(float dt)
 		acceleration = -MAX_ACCELERATION;
 	}
 
-	
+
 
 
 	vehicle->ApplyEngineForce(acceleration);
+
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 
 	vehicle->Render();
+
+
 
 	//display the speed of the car
 

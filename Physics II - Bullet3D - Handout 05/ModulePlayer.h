@@ -51,6 +51,9 @@ public:
 	//Bool for jumping
 	bool isJumping;
 
+	bool isReducing;
+	bool isOnDebug = false;
+
 
 	//lifes 
 	int numLifes = 5;
