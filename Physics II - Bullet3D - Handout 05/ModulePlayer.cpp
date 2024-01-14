@@ -136,7 +136,18 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
+	//Change the mass of the vehicle, the original mass is 500
+	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN)
+	{
+		vehicle->info.mass += 50;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_N) == KEY_DOWN)
+	{
+		vehicle->info.mass -= 50;
+	}
 
+
+	//Restart vehicle position
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) {
 		//Apear in Checkpoint
 		float orientationMat[16];
@@ -147,15 +158,21 @@ update_status ModulePlayer::Update(float dt)
 		//vehicle->vehicle->m_currentVehicleSpeedKmHour = 1.0f;
 
 	}
+	//Change size of vehicle
 	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
 	{
 
 		vehicle->info.chassis_size.Set(10, 0.5, 4);
 		//vehicle->info.chassis_offset.Set(10, 0.5, 0);
 	}
+	//Change friction
 	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 	{
 		vehicle->info.frictionSlip = 1.5f;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
+	{
+		vehicle->info.frictionSlip = 50.0f;
 	}
 
 	turn = acceleration = brake = 0.0f;
@@ -167,8 +184,7 @@ update_status ModulePlayer::Update(float dt)
 		acceleration = MAX_ACCELERATION*3;
 		//cambiar el tamaño del coche
 		//vehicle->info.chassis_size.Set(2, 3.5, 4);
-		//Change the mass of the vehicle, the original mass is 500
-		vehicle->info.mass = 9000;
+
 	}
 
 
@@ -180,8 +196,11 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = -MAX_ACCELERATION ;
 			velocityLimit = 120;
 			angle = 5.0f * DEGTORAD;
+			if (!isDrifting) {
+				App->audio->PlayFx(driftFx);
+			}
 			isDrifting = true;
-			App->audio->PlayFx(driftFx);
+
 		
 		}
 		else
@@ -196,7 +215,15 @@ update_status ModulePlayer::Update(float dt)
 	{
 		//Brake power, decrease it to brake slower 
 		angle = 5.0f * DEGTORAD;
-		acceleration = -MAX_ACCELERATION * 10;
+		if (vehicle->info.frictionSlip < 50) 
+		{
+			acceleration = -MAX_ACCELERATION*3;
+		}
+		else
+		{
+			acceleration = -MAX_ACCELERATION * 10;
+
+		}
 		if (vehicle->GetKmh() < 0) {
 			acceleration = -MAX_ACCELERATION;
 		}
@@ -212,9 +239,14 @@ update_status ModulePlayer::Update(float dt)
 			acceleration = -MAX_ACCELERATION;
 			velocityLimit = 120;
 			angle = 5.0f * DEGTORAD;
+			if (!isDrifting) {
+				App->audio->PlayFx(driftFx);
+			}
+			isDrifting = true;
 		}
 		else
 		{
+			isDrifting = false;
 			velocityLimit = 180;
 		}
 		if (turn < angle)
@@ -259,15 +291,14 @@ update_status ModulePlayer::Update(float dt)
 
 	//Jump
 	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
-		
-
+		vehicle->Push(0, 10000, 0);
 	}
 
 
 
 	//Velocity limit
 	if (vehicle->GetKmh() > velocityLimit) {
-		acceleration = 0;
+		acceleration = -MAX_ACCELERATION;
 	}
 
 	
@@ -281,11 +312,13 @@ update_status ModulePlayer::Update(float dt)
 
 	//display the speed of the car
 	char title[120];
-	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s",
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Friction:%.1f | Mass:%.1f",
 		vehicle->GetKmh(),
 		App->physics->gravityEnabled ? "Enabled" : "Disabled",
 		App->physics->currentGravity.getY(),
-		App->physics->liftEnabled ? "Enabled" : "Disabled");
+		App->physics->liftEnabled ? "Enabled" : "Disabled",
+		vehicle->info.frictionSlip,
+		vehicle->info.mass);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
