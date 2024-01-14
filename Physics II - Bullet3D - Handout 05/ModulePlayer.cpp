@@ -311,6 +311,7 @@ update_status ModulePlayer::Update(float dt)
 	if (isJumping) {
 		jumpingCounter++;
 		if (jumpingCounter > jumpingCooldown) {
+			
 			jumpingCounter = 0;
 			isJumping = false;
 		}
