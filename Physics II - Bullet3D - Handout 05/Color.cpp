@@ -12,3 +12,4 @@ Color Purple = Color(0.6f, 0.4f, 1.0f);
 Color Naranja = Color(0.59f, 0.13f, 0.0f);
 Color Marron= Color(0.54f, 0.27f, 0.19f);
 Color Amarillo= Color(0.97f, 0.59f, 0.08f);
+Color Yellow = Color(0.92f, 0.96f, 0.15f);
