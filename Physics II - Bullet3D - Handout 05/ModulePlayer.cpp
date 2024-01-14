@@ -164,10 +164,6 @@ update_status ModulePlayer::Update(float dt)
 	{
 		vehicle->info.frictionSlip = 1.5;
 	}
-	else
-	{
-		vehicle->info.frictionSlip = 50;
-	}
 
 
 

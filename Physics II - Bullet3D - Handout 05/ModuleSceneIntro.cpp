@@ -349,6 +349,11 @@ update_status ModuleSceneIntro::Update(float dt)
 		c->data.Render();
 		c = c->next;
 	}
+	p2List_item<Cylinder>* cl = cylinders.getFirst();
+	while (cl != NULL) {
+		cl->data.Render();
+		cl = cl->next;
+	}
 	p2List_item<Coin>* coinList = coins.getFirst();
 
 	while (coinList != NULL) {
@@ -477,6 +482,8 @@ void ModuleSceneIntro::AddCylinder(vec3 pos, float radius, float heigth, Color r
 		cylinder.SetRotation(rotZ, { 0, 0, 1 });
 
 	App->physics->AddBody(cylinder, 0);
+	cylinders.add(cylinder);
+
 }
 
 void ModuleSceneIntro::AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ)
