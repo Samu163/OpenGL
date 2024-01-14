@@ -103,7 +103,7 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 	if (vehicle && liftEnabled) {
 		float liftCoefficient = 1.0f; // Define this based on your vehicle's characteristics
 		float speed = vehicle->GetKmh();
-		if (speed > 40) {
+		if (speed > 70) {
 			//liftForce = btVector3(0, liftCoefficient * speed * speed, 0);
 			btVector3 liftForce = CalculateLiftForce(speed, liftCoefficient);
 			vehicle->GetRigidBody()->applyCentralForce(liftForce);
