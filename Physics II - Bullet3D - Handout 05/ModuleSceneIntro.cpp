@@ -65,7 +65,7 @@ bool ModuleSceneIntro::Start()
 
 	
 
-	//ivo curva
+	// curva
 	AddCube({-30+  1383.7, 120.01,  -5 }, { 30, 0, 100 }, Carretera, 0, -10, 0);
 	AddCube({-30+  1373.7, 121.01, -5 }, { 3, 3, 3 }, Grey, 0, -10, 0);
 	AddCube({ -30+ 1393.7, 121.01, -5 }, { 3, 3, 3 }, Grey, 0, -10, 0);
@@ -116,10 +116,39 @@ bool ModuleSceneIntro::Start()
 
 	//Monedas en inicio
 	AddCoin({ 0,82,30 }, Yellow, 0, 0, 0, 30, 1);
-	AddCoin({ -50,82, 570 }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 466,80.01+2,-610  }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 685,80.02+2,-2.5 }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 1264,102,-485 }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 813, 120.01+2,443 }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 660,80.02+2, 297.5 }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 455,80.02+2,-2.5 }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 1383,120.02+2,-225 }, Yellow, 0, 0, 0, 30, 1);
 	
-	AddCube({ 0,100.01, -200 }, { 47, 0, 120+20 }, Carretera, -20, 0, 0);
+
+	AddCoin({ 685,80.01+2,157.5 - 160 - 160 }, Yellow, 0, 0, 0, 30, 1);
+
+	AddCoin({ 570,80.01+2, 377.5 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 390,80.02+2, -715 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 1232, 120.02+2, 253 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 1287.2,120.01+2, 175 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 455,130+2, -231.25 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 685,80.01+2, -455 }, Yellow, 0, 0, 0, 30, 1);
+
+
+
+	AddCoin({ 0,80.02+2, -455 + 45 }, Yellow, 0, 0, 0, 30, 1);
+
+
+
 	//rampa-Curva
+	AddCube({ 0,100.01, -200 }, { 47, 0, 120 + 20 }, Carretera, -20, 0, 0);
 	AddCube({ 0,80.02, -455 +45}, { 47, 0, 166+120 }, Carretera, 0, 0, 0);
 	//Curva
 	AddCube({ 25,80.01, -605 }, { 47, 0, 166 }, Carretera, 0, -20, 0);
@@ -158,7 +187,7 @@ bool ModuleSceneIntro::Start()
 	AddCube({ 685,80.02,157.5 - 160 }, { 47, 0, 166 }, Hielo, 0, 0, 0);
 	AddCube({ 685,80.01,157.5 - 160 - 160 }, { 47, 0, 166 }, Hielo, 0, 0, 0);
 	AddCube({ 685,80.02,157.5 - 160 - 160 - 160 }, { 47, 0, 166 }, Hielo, 0, 0, 0);
-
+	AddCube({ 455,80.01, -455 }, { 1.5, 0.1, 50 }, White, 0, 0, 0);
 
 	//rampa-Curva
 	AddCube({ 685,80.01, -455 }, { 47, 0, 166 }, Carretera, 0, 0, 0);
