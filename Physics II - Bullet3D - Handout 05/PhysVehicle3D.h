@@ -2,6 +2,7 @@
 
 #include "PhysBody3D.h"
 #include "glmath.h"
+#include "Bullet/include/btBulletDynamicsCommon.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
@@ -26,6 +27,18 @@ struct VehicleInfo
 	
 	vec3 chassis_size;
 	vec3 chassis_offset;
+	vec3 chassis_size2;
+	vec3 chassis_offset2;
+	vec3 chassis_size3;
+	vec3 chassis_offset3;
+	vec3 chassis_size4;
+	vec3 chassis_offset4;
+	vec3 chassis_size5;
+	vec3 chassis_offset5;
+	vec3 chassis_size6;
+	vec3 chassis_offset6;
+	vec3 chassis_size7;
+	vec3 chassis_offset7;
 	float mass;
 	float suspensionStiffness; // default to 5.88 / 10.0 offroad / 50.0 sports car / 200.0 F1 car
 	float suspensionCompression; // default to 0.83
@@ -51,9 +64,19 @@ public:
 	void Turn(float degrees);
 	float GetKmh() const;
 
+	// Method to get the btRigidBody
+	btRigidBody* GetRigidBody() const {
+		return vehicle->getRigidBody();
+	}
+
+
+
+
 	
 public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+
+
 };

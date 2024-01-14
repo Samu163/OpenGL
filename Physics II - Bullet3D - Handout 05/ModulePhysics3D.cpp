@@ -4,6 +4,8 @@
 #include "PhysBody3D.h"
 #include "PhysVehicle3D.h"
 #include "Primitive.h"
+#include "ModulePlayer.h"
+
 
 #ifdef _DEBUG
 	#pragma comment (lib, "Bullet/libx86/BulletDynamics_debug.lib")
@@ -15,6 +17,10 @@
 	#pragma comment (lib, "Bullet/libx86/LinearMath.lib")
 #endif
 
+static btVector3 CalculateLiftForce(float speed, float liftCoefficient) {
+	return btVector3(0, liftCoefficient * speed * speed, 0);
+}
+
 ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(app, start_enabled), currentGravity(0.0f, -10.0f, 0.0f), gravityEnabled(true)
 {
 	debug = true;
@@ -24,6 +30,10 @@ ModulePhysics3D::ModulePhysics3D(Application* app, bool start_enabled) : Module(
 	broad_phase = new btDbvtBroadphase();
 	solver = new btSequentialImpulseConstraintSolver();
 	debug_draw = new DebugDrawer();
+
+	//liftforce related
+	liftEnabled = false; // Lift force is initially off
+	liftForce = btVector3(0.0f, 0.0f, 0.0f); // No lift force to begin with
 }
 
 // Destructor
@@ -107,6 +117,25 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 			}
 		}
 	}
+
+
+	PhysVehicle3D* vehicle = App->player->vehicle; // Get the vehicle reference
+	if (vehicle && liftEnabled) {
+		float liftCoefficient = 1.0f; // Define this based on your vehicle's characteristics
+		float speed = vehicle->GetKmh();
+		if (speed > 40) {
+			//liftForce = btVector3(0, liftCoefficient * speed * speed, 0);
+			btVector3 liftForce = CalculateLiftForce(speed, liftCoefficient); 
+			vehicle->GetRigidBody()->applyCentralForce(liftForce);
+		}
+		
+	}
+	else {
+		// If lift is not enabled, ensure no lift force is being applied
+		liftForce = btVector3(0.0f, 0.0f, 0.0f);
+	}
+
+
 
 	return UPDATE_CONTINUE;
 }
@@ -404,4 +433,7 @@ void ModulePhysics3D::ChangeGravity(float gravityValue)
 	currentGravity.setY(gravityValue); // Assuming gravity acts along the Y-axis
 	world->setGravity(currentGravity);
 }
+
+
+
 

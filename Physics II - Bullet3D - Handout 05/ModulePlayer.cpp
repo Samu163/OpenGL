@@ -23,8 +23,27 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	car.chassis_size.Set(2, 0.5, 4);
+	car.chassis_size.Set(2, 0.7, 2);
 	car.chassis_offset.Set(0, 1.3, 0);
+
+	car.chassis_size2.Set(2.01, 0.2, 2.01);
+	car.chassis_offset2.Set(0, 1.3, 0);
+
+	car.chassis_size3.Set(2, 0.2, 2);
+	car.chassis_offset3.Set(0, 4, 0);
+
+	car.chassis_size4.Set(0.2,0.2, 0.2);
+	car.chassis_offset4.Set(0.7, 2, 0);
+
+	/*car.chassis_size5.Set(2, 2, 2);
+	car.chassis_offset5.Set(0, 0, 0);
+
+	car.chassis_size6.Set(2, 2, 2);
+	car.chassis_offset6.Set(0, 0, 0);
+
+	car.chassis_size7.Set(2, 2, 2);
+	car.chassis_offset7.Set(0, 0, 0);*/
+
 	car.mass = 500.0f;
 	car.suspensionStiffness = 2.88f;
 	car.suspensionCompression = 0.83f;
@@ -36,7 +55,7 @@ bool ModulePlayer::Start()
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
-	float wheel_radius = 0.4f;
+	float wheel_radius = 0.2f;
 	float wheel_width = 0.5f;
 	float suspensionRestLength = 1.2f;
 
@@ -202,6 +221,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 	//Player Debug Keys
+	//Gravity stuffs
 	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
 		App->physics->currentGravity.setY(App->physics->currentGravity.getY() - 1.0f); // Decrease gravity
 		App->physics->ChangeGravity(App->physics->currentGravity.getY());
@@ -211,7 +231,6 @@ update_status ModulePlayer::Update(float dt)
 		App->physics->currentGravity.setY(App->physics->currentGravity.getY() + 1.0f); // Increase gravity
 		App->physics->ChangeGravity(App->physics->currentGravity.getY());
 	}
-
 	// Toggle gravity with a key press (e.g., the 'G' key), if press again, switch to normal gravity
 	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN) {
 		if (App->physics->gravityEnabled) {
@@ -225,6 +244,18 @@ update_status ModulePlayer::Update(float dt)
 			App->physics->gravityEnabled = true;
 		}
 	}
+
+	// Lift force stuffs
+	// Toggle lift force with a key press (e.g., the 'L' key)
+	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
+		App->physics->liftEnabled = !App->physics->liftEnabled;
+
+		//reset the lift force vector when disabling lift
+		if (!App->physics->liftEnabled) {
+			App->physics->liftForce.setValue(0, 0, 0);
+		}
+	}
+
 
 
 
@@ -245,11 +276,12 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	//display the speed of the car
-	char title[100];
-	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f)",
-	vehicle->GetKmh(),
-	App->physics->gravityEnabled ? "Enabled" : "Disabled",
-	App->physics->currentGravity.getY());
+	char title[120];
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s",
+		vehicle->GetKmh(),
+		App->physics->gravityEnabled ? "Enabled" : "Disabled",
+		App->physics->currentGravity.getY(),
+		App->physics->liftEnabled ? "Enabled" : "Disabled");
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
