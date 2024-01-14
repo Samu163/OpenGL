@@ -25,7 +25,7 @@ static btVector3 CalculateLiftForce(float speed, float liftCoefficient) {
 	if (forceMagnitude > 6000.0f) {
 		forceMagnitude = 6000.0f;
 	}
-	// Assuming lift acts in the opposite direction to the vehicle's up direction
+	
 	return btVector3(0, forceMagnitude, 0);
 
 }
@@ -163,10 +163,10 @@ update_status ModulePhysics3D::PreUpdate(float dt)
 	//checking for Lift force application
 	vehicle = App->player->vehicle; // Get the vehicle reference
 	if (vehicle && liftEnabled) {
-		float liftCoefficient = 1.0f; // Define this based on your vehicle's characteristics
+		float liftCoefficient = 1.0f; 
 		float speed = vehicle->GetKmh();
 		if (speed > 100) {
-			//liftForce = btVector3(0, liftCoefficient * speed * speed, 0);
+			
 			btVector3 liftForce = CalculateLiftForce(speed, liftCoefficient); 
 			vehicle->GetRigidBody()->applyCentralForce(liftForce);
 		}
