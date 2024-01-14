@@ -20,7 +20,7 @@ bool ModuleSceneIntro::Start()
 {
 
 	//App->audio->PlayMusic("assets/Night.wav", 0.0f);
-
+    coinFx = App->audio->LoadFx("assets/drifting.ogg");
 	LOG("Loading Intro assets");
 	bool ret = true;
 
@@ -389,7 +389,8 @@ update_status ModuleSceneIntro::Update(float dt)
 				coinList = coinList->next;
 
 
-				//App->audio->PlayFx(coinFx);
+
+				App->audio->PlayFx(coinFx);
 
 
 			}

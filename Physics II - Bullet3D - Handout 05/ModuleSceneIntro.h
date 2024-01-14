@@ -19,6 +19,7 @@ struct Coin
 	int timer = 0;
 	bool deleted = false;
 	int num;
+	
 };
 
 struct CheckPoint
@@ -34,6 +35,7 @@ struct CheckPoint
 class ModuleSceneIntro : public Module
 {
 public:
+	int coinFx;
 	ModuleSceneIntro(Application* app, bool start_enabled = true);
 	~ModuleSceneIntro();
 	

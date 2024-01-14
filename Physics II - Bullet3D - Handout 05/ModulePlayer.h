@@ -22,6 +22,7 @@ public:
 	
 public:
 	int driftFx;
+	int coinFx;
 	vec3 lastCheckPoint = { 0,85,0 };
 	//vehicle stuf
 	PhysVehicle3D* vehicle;
