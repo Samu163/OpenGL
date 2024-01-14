@@ -22,7 +22,9 @@ public:
 	
 public:
 	int driftFx;
-	int coinFx;
+	int WinFx;
+	int LooseFx;
+
 	vec3 lastCheckPoint = { 0,85,0 };
 	//vehicle stuf
 	PhysVehicle3D* vehicle;
@@ -48,4 +50,8 @@ public:
 
 	//Bool for jumping
 	bool isJumping;
+
+
+	//lifes 
+	int numLifes = 5;
 };

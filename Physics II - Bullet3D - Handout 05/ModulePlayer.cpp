@@ -20,6 +20,9 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 	driftFx = App->audio->LoadFx("assets/drifting.ogg");
+	WinFx = App->audio->LoadFx("assets/win.ogg");
+	
+	LooseFx = App->audio->LoadFx("assets/loose.ogg");
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -136,16 +139,32 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
-	if (counterForCoins >= 10) 
+	//Win Condition 
+	if (counterForCoins >= 10)
 	{
 		//Teleport player to the winning zone 
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
+		lastCheckPoint = (9 - 1500 + 5, 88.02, -10);
 		vehicle->SetPos(9 - 1500 + 5, 88.02, -10);
+		counterForCoins = 0;
+
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(WinFx);
+		
+
 
 	}
-
+	//Lose Condition
+	if (numLifes <= 0) {
+		float orientationMat[16];
+		memset(orientationMat, 1.0f, sizeof(orientationMat));
+		vehicle->SetTransform(orientationMat);
+		lastCheckPoint = (9 - 1500 + 5, 88.02 + 1000, -10);
+		vehicle->SetPos(9 - 1500 + 5, 88.02 + 1000, -10);
+		numLifes = 5;
+	}
 
 	//Barro 
 	if (vehicle->GetPos().x() < 1383 + 47 && vehicle->GetPos().x() > 1383 - 47
@@ -160,10 +179,11 @@ update_status ModulePlayer::Update(float dt)
 	
 	//Ice
 	if (vehicle->GetPos().x() < 685 + 141 && vehicle->GetPos().x() > 685 - 141
-		&& vehicle->GetPos().z() > 157.5 - 480 -166 && vehicle->GetPos().z() < 157.5 + 166)
+		&& vehicle->GetPos().z() > 157.5 - 480 - 166 && vehicle->GetPos().z() < 100)
 	{
 		vehicle->info.frictionSlip = 1.5;
 	}
+
 
 
 
@@ -192,6 +212,8 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) {
 		//Apear in Checkpoint
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(WinFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
@@ -202,6 +224,9 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
 		//Apear in Checkpoint
+
+		App->audio->PlayMusic("assets/.ogg", 1.0f);
+		App->audio->PlayFx(LooseFx);
 		float orientationMat[16];
 		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
@@ -249,12 +274,13 @@ update_status ModulePlayer::Update(float dt)
 	}
 
 
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
 		//Drift (change the letters but it cannot be the space)
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			acceleration = -MAX_ACCELERATION ;
+			acceleration = -MAX_ACCELERATION;
+			//Velocity limit for friction
 			if (vehicle->info.frictionSlip > 50)
 			{
 				velocityLimit = 60;
@@ -262,31 +288,44 @@ update_status ModulePlayer::Update(float dt)
 			else
 			{
 				velocityLimit = 120;
-
+				if (vehicle->info.frictionSlip < 50) {
+					angle = 3.0f * DEGTORAD;
+				}
+				else
+				{
+					angle = 5.0f * DEGTORAD;
+				}
 			}
-			angle = 5.0f * DEGTORAD;
 			if (!isDrifting) {
 				App->audio->PlayFx(driftFx);
 			}
 			isDrifting = true;
 
-		
+
 		}
 		else
 		{
 			isDrifting = false;
 			velocityLimit = 180;
 		}
+		if (vehicle->info.frictionSlip < 50) {
+			angle = 0.5f * DEGTORAD;
+		}
+		else
+		{
+			angle = TURN_DEGREES;
+		}
 		if (turn > -angle)
 			turn -= angle;
 	}
+
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		//Brake power, decrease it to brake slower 
 		angle = 5.0f * DEGTORAD;
-		if (vehicle->info.frictionSlip < 50) 
+		if (vehicle->info.frictionSlip < 50)
 		{
-			acceleration = -MAX_ACCELERATION*3;
+			acceleration = -MAX_ACCELERATION * 3;
 		}
 		else
 		{
@@ -297,11 +336,12 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
+
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			App->audio->PlayFx(driftFx);
+		
 			acceleration = -MAX_ACCELERATION;
 			if (vehicle->info.frictionSlip > 50)
 			{
@@ -310,9 +350,14 @@ update_status ModulePlayer::Update(float dt)
 			else
 			{
 				velocityLimit = 120;
-
+				if (vehicle->info.frictionSlip < 50) {
+					angle = 3.0f * DEGTORAD;
+				}
+				else
+				{
+					angle = 5.0f * DEGTORAD;
+				}
 			}
-			angle = 5.0f * DEGTORAD;
 			if (!isDrifting) {
 				App->audio->PlayFx(driftFx);
 			}
@@ -323,9 +368,18 @@ update_status ModulePlayer::Update(float dt)
 			isDrifting = false;
 			velocityLimit = 180;
 		}
+		if (vehicle->info.frictionSlip < 50) {
+			angle = 0.5f * DEGTORAD;
+		}
+		else
+		{
+			angle = TURN_DEGREES;
+		}
 		if (turn < angle)
 			turn += angle;
 	}
+
+
 
 	//Player Debug Keys
 	//Gravity stuffs
@@ -412,8 +466,9 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	//display the speed of the car
+
 	char title[150];
-	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Drag: %s | Friction:%.1f | Mass:%.1f | Coins:%d/10",
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s | Drag: %s | Friction:%.1f | Mass:%.1f | Coins:%d/10 | Lifes:%d ",
 		vehicle->GetKmh(),
 		App->physics->gravityEnabled ? "Enabled" : "Disabled",
 		App->physics->currentGravity.getY(),
@@ -421,8 +476,10 @@ update_status ModulePlayer::Update(float dt)
 		App->physics->dragEnabled ? "Enabled" : "Disabled",
 		vehicle->info.frictionSlip,
 		vehicle->info.mass,
-		counterForCoins);
+		counterForCoins,
+		numLifes);
 	App->window->SetTitle(title);
+
 
 	return UPDATE_CONTINUE;
 }

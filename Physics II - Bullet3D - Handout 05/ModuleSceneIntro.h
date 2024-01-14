@@ -19,7 +19,6 @@ struct Coin
 	int timer = 0;
 	bool deleted = false;
 	int num;
-	
 };
 
 struct CheckPoint
