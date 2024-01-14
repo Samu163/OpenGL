@@ -304,8 +304,16 @@ update_status ModulePlayer::Update(float dt)
 
 
 	//Jump
-	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
-		vehicle->Push(0, 10000, 0);
+	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN && !isJumping) {
+		vehicle->Push(0, vehicle->info.mass*10, 0);
+		isJumping = true;
+	}
+	if (isJumping) {
+		jumpingCounter++;
+		if (jumpingCounter > jumpingCooldown) {
+			jumpingCounter = 0;
+			isJumping = false;
+		}
 	}
 
 
