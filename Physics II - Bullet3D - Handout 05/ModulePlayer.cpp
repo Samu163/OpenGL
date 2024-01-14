@@ -311,10 +311,6 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->info.frictionSlip < 50) {
 			angle = 0.5f * DEGTORAD;
 		}
-		else
-		{
-			angle = TURN_DEGREES;
-		}
 		if (turn > -angle)
 			turn -= angle;
 	}
@@ -370,10 +366,6 @@ update_status ModulePlayer::Update(float dt)
 		}
 		if (vehicle->info.frictionSlip < 50) {
 			angle = 0.5f * DEGTORAD;
-		}
-		else
-		{
-			angle = TURN_DEGREES;
 		}
 		if (turn < angle)
 			turn += angle;
