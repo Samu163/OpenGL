@@ -23,6 +23,7 @@ public:
 public:
 	int driftFx;
 	vec3 lastCheckPoint = { 0,85,0 };
+	//vehicle stuf
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
@@ -32,7 +33,15 @@ public:
 	float half_width;
 	float half_length;
 
+	//Coutner for win / Lose condition
 	int counterForCoins;
 	int maxCoins;
 	int winConditionCoins;
+
+	//Jumping Counters
+	int jumpingCounter = 0;
+	int jumpingCooldown = 60 * 3;
+
+	//Bool for jumping
+	bool isJumping;
 };
