@@ -140,7 +140,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN) {
 		//Apear in Checkpoint
 		float orientationMat[16];
-		memset(orientationMat, 0.0f, sizeof(orientationMat));
+		memset(orientationMat, 1.0f, sizeof(orientationMat));
 		vehicle->SetTransform(orientationMat);
 		vehicle->SetPos(lastCheckPoint.x, lastCheckPoint.y, lastCheckPoint.z);
 
@@ -257,8 +257,11 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
+	//Jump
+	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
+		
 
-
+	}
 
 
 

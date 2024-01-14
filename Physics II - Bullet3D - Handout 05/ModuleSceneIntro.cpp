@@ -166,8 +166,10 @@ bool ModuleSceneIntro::CleanUp()
 update_status ModuleSceneIntro::Update(float dt)
 {
 	if (App->camera->Position.y < 50) {
+		float orientationMat[16];
+		memset(orientationMat, 1.0f, sizeof(orientationMat));
+		App->player->vehicle->SetTransform(orientationMat);
 		App->player->vehicle->SetPos(App->player->lastCheckPoint.x, App->player->lastCheckPoint.y, App->player->lastCheckPoint.z);
-		App->player->acceleration = 0;
 		
 	}
 	p2List_item<Cube>* c = buildingBlocks.getFirst();
