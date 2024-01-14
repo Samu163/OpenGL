@@ -66,51 +66,51 @@ bool ModuleSceneIntro::Start()
 	
 
 	//ivo curva
-	AddCube({ 1383.7, 120.01,  -5 }, { 30, 0, 100 }, Carretera, 0, -10, 0);
-	AddCube({ 1373.7, 121.01, -5 }, { 3, 3, 3 }, Grey, 0, -10, 0);
-	AddCube({ 1393.7, 121.01, -5 }, { 3, 3, 3 }, Grey, 0, -10, 0);
-	AddCube({ 1383.7 ,121.01, 15 }, { 3, 3, 3 }, Grey, 0, -10, 0);
+	AddCube({-30+  1383.7, 120.01,  -5 }, { 30, 0, 100 }, Carretera, 0, -10, 0);
+	AddCube({-30+  1373.7, 121.01, -5 }, { 3, 3, 3 }, Grey, 0, -10, 0);
+	AddCube({ -30+ 1393.7, 121.01, -5 }, { 3, 3, 3 }, Grey, 0, -10, 0);
+	AddCube({-30+  1383.7 ,121.01, 15 }, { 3, 3, 3 }, Grey, 0, -10, 0);
 
-	AddCube({ 1358,  120.02, 88 }, { 30, 0, 100 }, Carretera, 0, -20, 0);
-	AddCube({ 1348, 121.01, 88 }, { 3, 3, 3 }, Grey, 0, -20, 0);
-	AddCube({ 1368, 121.01, 88 }, { 3, 3, 3 }, Grey, 0, -20, 0);
-	AddCube({ 1358 , 121.01, 108 }, { 3, 3, 3 }, Grey, 0, -20, 0);
+	AddCube({-30+  1358,  120.02, 88 }, { 30, 0, 100 }, Carretera, 0, -20, 0);
+	AddCube({-30+  1348, 121.01, 88 }, { 3, 3, 3 }, Grey, 0, -20, 0);
+	AddCube({-30+  1368, 121.01, 88 }, { 3, 3, 3 }, Grey, 0, -20, 0);
+	AddCube({-30+  1358 , 121.01, 108 }, { 3, 3, 3 }, Grey, 0, -20, 0);
 
-	AddCube({ 1317.2,120.01, 175}, { 30, 0, 100 }, Carretera, 0, -30, 0);
-	AddCube({ 1307.2, 121.01, 175}, { 3, 3, 3 }, Grey, 0, -30, 0);
-	AddCube({ 1327.2, 121.01, 175}, { 3, 3, 3 }, Grey, 0, -30, 0);
-	AddCube({ 1317.2 , 121.01, 195 }, { 3, 3, 3 }, Grey, 0, -30, 0);
+	AddCube({-30+  1317.2,120.01, 175}, { 30, 0, 100 }, Carretera, 0, -30, 0);
+	AddCube({-30+  1307.2, 121.01, 175}, { 3, 3, 3 }, Grey, 0, -30, 0);
+	AddCube({-30+  1327.2, 121.01, 175}, { 3, 3, 3 }, Grey, 0, -30, 0);
+	AddCube({ -30+ 1317.2 , 121.01, 195 }, { 3, 3, 3 }, Grey, 0, -30, 0);
 
-	AddCube({ -120 + 782 + 600, 120.02, 453 - 200 }, { 30, 0, 100 }, Carretera, 0, -40, 0);
-	AddCube({ -120 + 782 + 600 - 10, 120.01 + 1, 453 - 200 }, { 3, 3, 3 }, Grey, 0, -40, 0);
-	AddCube({ -120 + 782 + 600 + 10, 120.01 + 1, 453 - 200 }, { 3, 3, 3 }, Grey, 0, -40, 0);
-	AddCube({ -120 + 782 + 600 , 120.01 + 1, 453 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -40, 0);
+	AddCube({-30+  -120 + 782 + 600, 120.02, 453 - 200 }, { 30, 0, 100 }, Carretera, 0, -40, 0);
+	AddCube({-30+  -120 + 782 + 600 - 10, 120.01 + 1, 453 - 200 }, { 3, 3, 3 }, Grey, 0, -40, 0);
+	AddCube({-30+  -120 + 782 + 600 + 10, 120.01 + 1, 453 - 200 }, { 3, 3, 3 }, Grey, 0, -40, 0);
+	AddCube({-30+  -120 + 782 + 600 , 120.01 + 1, 453 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -40, 0);
 
-	AddCube({ -188 + 782 + 600, 120.01, 520 - 200 }, { 30, 0, 100 }, Carretera, 0, -50, 0);
-	AddCube({ -188 + 782 + 600 - 10, 120.01 + 1, 520 - 200 }, { 3, 3, 3 }, Grey, 0, -50, 0);
-	AddCube({ -188 + 782 + 600 + 10, 120.01 + 1, 520 - 200 }, { 3, 3, 3 }, Grey, 0, -50, 0);
-	AddCube({ -188 + 782 + 600 , 120.01 + 1, 520 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -50, 0);
+	AddCube({-30+  -188 + 782 + 600, 120.01, 520 - 200 }, { 30, 0, 100 }, Carretera, 0, -50, 0);
+	AddCube({-30+  -188 + 782 + 600 - 10, 120.01 + 1, 520 - 200 }, { 3, 3, 3 }, Grey, 0, -50, 0);
+	AddCube({-30+  -188 + 782 + 600 + 10, 120.01 + 1, 520 - 200 }, { 3, 3, 3 }, Grey, 0, -50, 0);
+	AddCube({ -30+ -188 + 782 + 600 , 120.01 + 1, 520 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -50, 0);
 
-	AddCube({ -262 + 782 + 600, 120.02, 570 - 200 }, { 30, 0, 100 }, Carretera, 0, -60, 0);
-	AddCube({ -262 + 782 + 600 - 10, 120.01 + 1, 570 - 200 }, { 3, 3, 3 }, Grey, 0, -60, 0);
-	AddCube({ -262 + 782 + 600 + 10, 120.01 + 1, 570 - 200 }, { 3, 3, 3 }, Grey, 0, -60, 0);
-	AddCube({ -262 + 782 + 600 , 120.01 + 1, 570 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -60, 0);
+	AddCube({-30+  -262 + 782 + 600, 120.02, 570 - 200 }, { 30, 0, 100 }, Carretera, 0, -60, 0);
+	AddCube({-30+  -262 + 782 + 600 - 10, 120.01 + 1, 570 - 200 }, { 3, 3, 3 }, Grey, 0, -60, 0);
+	AddCube({-30+  -262 + 782 + 600 + 10, 120.01 + 1, 570 - 200 }, { 3, 3, 3 }, Grey, 0, -60, 0);
+	AddCube({-30+  -262 + 782 + 600 , 120.01 + 1, 570 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -60, 0);
 
-	AddCube({ -350 + 782 + 600, 120.01, 610 - 200 }, { 30, 0, 100 }, Carretera, 0, -70, 0);
-	AddCube({ -350 + 782 + 600 - 10, 120.01 + 1, 610 - 200 }, { 3, 3, 3 }, Grey, 0, -70, 0);
-	AddCube({ -350 + 782 + 600 + 10, 120.01 + 1, 610 - 200 }, { 3, 3, 3 }, Grey, 0, -70, 0);
-	AddCube({ -350 + 782 + 600 , 120.01 + 1, 610 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -70, 0);
+	AddCube({-30+  -350 + 782 + 600, 120.01, 610 - 200 }, { 30, 0, 100 }, Carretera, 0, -70, 0);
+	AddCube({-30+  -350 + 782 + 600 - 10, 120.01 + 1, 610 - 200 }, { 3, 3, 3 }, Grey, 0, -70, 0);
+	AddCube({-30+  -350 + 782 + 600 + 10, 120.01 + 1, 610 - 200 }, { 3, 3, 3 }, Grey, 0, -70, 0);
+	AddCube({-30+  -350 + 782 + 600 , 120.01 + 1, 610 - 200 + 20 }, { 3, 3, 3 }, Grey, 0, -70, 0);
 
-	AddCube({ -443 + 782 + 600, 120.02, 635 - 200 }, { 30, 0, 100 }, Carretera, 0, -80, 0);
-	AddCube({ -443 + 782 + 600 - 10, 120.01 + 1, 635 - 200 - 10 }, { 3, 3, 3 }, Grey, 0, -80, 0);
-	AddCube({ -443 + 782 + 600 + 10, 120.01 + 1, 635 - 200 - 10 }, { 3, 3, 3 }, Grey, 0, -80, 0);
-	AddCube({ -443 + 782 + 600 , 120.01 + 1, 635 - 200 + 20 - 10 }, { 3, 3, 3 }, Grey, 0, -80, 0);
+	AddCube({-30+  -443 + 782 + 600, 120.02, 635 - 200 }, { 30, 0, 100 }, Carretera, 0, -80, 0);
+	AddCube({-30+  -443 + 782 + 600 - 10, 120.01 + 1, 635 - 200 - 10 }, { 3, 3, 3 }, Grey, 0, -80, 0);
+	AddCube({ -30+ -443 + 782 + 600 + 10, 120.01 + 1, 635 - 200 - 10 }, { 3, 3, 3 }, Grey, 0, -80, 0);
+	AddCube({-30+  -443 + 782 + 600 , 120.01 + 1, 635 - 200 + 20 - 10 }, { 3, 3, 3 }, Grey, 0, -80, 0);
 
-	AddCube({ -539 + 782 + 600, 120.01, 643 - 200 }, { 30, 0, 100 }, Carretera, 0, -90, 0);
+	AddCube({-30+  -539 + 782 + 600, 120.01, 643 - 200 }, { 30, 0, 100 }, Carretera, 0, -90, 0);
 	
 
 	//RECTA HIELO
-	AddCube({ 1.7 + 782 + 600 + 20, 120.02, 195 - 200 - 100 }, { 30, 0, 100 }, Carretera, 0, -10, 0);
+	AddCube({-30+  1.7 + 782 + 600 + 20, 120.02, 195 - 200 - 100 }, { 30, 0, 100 }, Carretera, 0, -10, 0);
 	/*AddCube({ -539 + 782 + 600, 60.01, 643 - 200 }, { 30, 2, 100 }, Grey, 0, -90, 0);
 	AddCube({ -539 + 782 + 600, 60.01, 643 - 200 }, { 30, 2, 100 }, Grey, 0, -90, 0);
 	AddCube({ -539 + 782 + 600, 60.01, 643 - 200 }, { 30, 2, 100 }, Grey, 0, -90, 0);*/
@@ -177,18 +177,19 @@ bool ModuleSceneIntro::Start()
 
 	//rampa-Curva
 	AddCube({ 685,80.01, -455 }, { 47, 0, 166 }, Carretera, 0, 0, 0);
+
 	//Curva
 	AddCube({ 710,80.02, -605 }, { 47, 0, 166 }, Carretera, 0, -20, 0);
 	AddCube({ 800,80.01, -715 }, { 47, 0, 166 }, Carretera, 0, -60, 0);
 	AddCube({ 940,80.02, -755 }, { 47, 0, 166 }, Carretera, 0, -90, 0);
 	AddCube({ 1075,80.01, -715 }, { 47, 0, 166 }, Carretera, 0, -120, 0);
-	AddCube({ 1176,80.02,-605 }, { 47, 0, 166 }, Carretera, 0, -150, 0);
-	AddCube({ 1250,80.02,-485 }, { 47, 0, 166 }, Carretera, 0, -150, 0);
-	AddCube({ 1325,80.02,-365 }, { 47, 0, 166 }, Carretera, 0, -150, 0);
+	AddCube({ 1176,90,-605 }, { 47, 0, 166 }, Carretera, 0, -150, 0);
+	AddCube({14+ 1250,100,-485 }, { 47, 0, 166 }, Carretera, 0, -135, 0);
+	AddCube({30+ 1325,110,-365 }, { 47, 0, 166 }, Carretera, 0, -150, 0);
 
 	//barro
-	AddCube({ 1383,120.02,-225 }, { 47, 0, 166 }, Marron, 0, -165, 0);
-	AddCube({ 1325,120.02,-365 }, { 47, 60, 47 }, Marron, 0, -165, 0);
+	AddCube({ 1383,120.02,-225 }, { 47, 0, 166 }, Marron,0, 0, 0);
+	//AddCube({ 1325,120.02,-365 }, { 47, 60, 47 }, Marron, 0, -165, 0);
 	//recta
 
 	//cosas cositas lineas carretera
@@ -204,6 +205,7 @@ bool ModuleSceneIntro::Start()
 	AddCube({ -50 + 440,120.01, 570 - 20 }, { 50, 0.1, 1.5 }, White, 0, 0, 0);
 	AddCube({ -50 + 440 + 130,120.02, 570 - 65 }, { 50, 0.1, 1.5 }, White, 0, 40, 0);
 	AddCube({ -50 + 440 + 300,120.02, 570 - 130 }, { 50, 0.1, 1.5 }, White, 0, 0, 0);
+
 	AddCube({ 1383.7, 120.01,  -5 }, { 1.5, 0.1, 50 }, White, 0, -10, 0);
 	AddCube({ 1358,  120.02, 88 }, { 1.5, 0.1, 50 }, White, 0, -20, 0);
 	AddCube({ 1317.2,120.01, 175 }, { 1.5, 0.1, 50 }, White, 0, -30, 0);
@@ -214,6 +216,42 @@ bool ModuleSceneIntro::Start()
 	AddCube({ -443 + 782 + 600, 120.02, 635 - 200 }, { 1.5, 0.1, 50 }, White, 0, -80, 0);
 	AddCube({ -539 + 782 + 600, 120.01, 643 - 200 }, { 1.5, 0.1, 50 }, White, 0, -90, 0);
 	AddCube({ 1.7 + 782 + 600 + 20, 120.02, 195 - 200 - 100 }, { 1.5, 0.1, 50 }, White, 0, -10, 0);
+
+
+
+	AddCube({-30+  1383.7, 120.01,  -5 }, { 1.5, 0.1, 50 }, White, 0, -10, 0);
+	
+
+	AddCube({-30+  1358,  120.02, 88 }, { 1.5, 0.1, 50 }, White, 0, -20, 0);
+	
+
+	AddCube({-30+  1317.2,120.01, 175 }, { 1.5, 0.1, 50 }, White, 0, -30, 0);
+	
+
+	AddCube({-30+  -120 + 782 + 600, 120.02, 453 - 200 }, { 1.5, 0.1, 50 }, White, 0, -40, 0);
+	
+
+	AddCube({-30+  -188 + 782 + 600, 120.01, 520 - 200 }, { 1.5, 0.1, 50 }, White, 0, -50, 0);
+	
+	AddCube({-30+  -262 + 782 + 600, 120.02, 570 - 200 }, { 1.5, 0.1, 50 }, White, 0, -60, 0);
+	
+
+	//CheckPoints 
+	AddCheckPoint({ 685, 80.02, 157.5 - 380 }, { 3, 3, 3 }, Red, 0, 0, 0);
+	
+
+	AddCube({-30+  -350 + 782 + 600, 120.01, 610 - 200 }, { 1.5, 0.1, 50 }, White, 0, -70, 0);
+	
+
+	AddCube({-30+  -443 + 782 + 600, 120.02, 635 - 200 }, { 1.5, 0.1, 50 }, White, 0, -80, 0);
+
+	AddCube({-30+  -539 + 782 + 600, 120.01, 643 - 200 }, { 1.5, 0.1, 50 }, White, 0, -90, 0);
+
+
+	AddCube({-30+  1.7 + 782 + 600 + 20, 120.02, 195 - 200 - 100 }, { 1.5, 0.1, 50 }, White, 0, -10, 0);
+
+
+
 	AddCube({ 0,100.01, -200 }, { 1.5, 0.1, 50 }, White, -20, 0, 0);
 	AddCube({ 0,80.02, -455 + 45 }, { 1.5, 0.1, 50 }, White, 0, 0, 0);
 	AddCube({ 25,80.01, -605 }, { 1.5, 0.1, 50 }, White, 0, -20, 0);
@@ -238,9 +276,12 @@ bool ModuleSceneIntro::Start()
 	AddCube({ 800,80.01, -715 }, { 1.5, 0.1, 50 }, White, 0, -60, 0);
 	AddCube({ 940,80.02, -755 }, { 1.5, 0.1, 50 }, White, 0, -90, 0);
 	AddCube({ 1075,80.01, -715 }, { 1.5, 0.1, 50 }, White, 0, -120, 0);
-	AddCube({ 1176,80.02,-605 }, { 1.5, 0.1, 50 }, White, 0, -150, 0);
-	AddCube({ 1250,80.02,-485 }, { 1.5, 0.1, 50 }, White, 0, -150, 0);
-	AddCube({ 1325,80.02,-365 }, { 1.5, 0.1, 50 }, White, 0, -150, 0);
+
+
+
+	AddCube({ 1176,90,-605 }, { 1.5, 0.1, 50 }, White, 0, -150, 0);
+	AddCube({ 14 + 1250,100,-485 }, { 1.5, 0.1, 50 }, White, 0, -135, 0);
+	AddCube({ 30 + 1325,110,-365 }, { 1.5, 0.1, 50 }, White, 0, -150, 0);
 	
 	//fondo 
 	AddCube({ 0,0, 0 }, { 8000, 0.1, 8000 }, White, 0, 0, 0);
@@ -308,15 +349,15 @@ update_status ModuleSceneIntro::Update(float dt)
 		c->data.Render();
 		c = c->next;
 	}
-	p2List_item<Coin>* currentItem4 = coins.getFirst();
+	p2List_item<Coin>* coinList = coins.getFirst();
 
-	while (currentItem4 != NULL) {
+	while (coinList != NULL) {
 
-		if (currentItem4->data.deleted == false) {
-			currentItem4->data.timer++;
-			currentItem4->data.cylinder.Render();
+		if (coinList->data.deleted == false) {
+			coinList->data.timer++;
+			coinList->data.cylinder.Render();
 
-			btVector3 boosterPos = currentItem4->data.body->GetPos();
+			btVector3 boosterPos = coinList->data.body->GetPos();
 
 
 			btVector3 carPos = App->player->vehicle->GetPos();
@@ -324,34 +365,34 @@ update_status ModuleSceneIntro::Update(float dt)
 			float Ydistance = abs(boosterPos.y()) - abs(carPos.y());
 			float Zdistance = abs(boosterPos.z()) - abs(carPos.z());
 
-			btVector3 speed = currentItem4->data.body->body->getAngularVelocity();
+			btVector3 speed = coinList->data.body->body->getAngularVelocity();
 			speed.setY(10);
 
-			currentItem4->data.body->body->setAngularVelocity(speed);
+			coinList->data.body->body->setAngularVelocity(speed);
 
-			currentItem4->data.cylinder.Update(currentItem4->data.body);
+			coinList->data.cylinder.Update(coinList->data.body);
 
-			if (currentItem4->data.timer < 48)
-				currentItem4->data.body->body->setLinearVelocity(btVector3(0, 1, 0));
+			if (coinList->data.timer < 48)
+				coinList->data.body->body->setLinearVelocity(btVector3(0, 1, 0));
 			else
-				currentItem4->data.body->body->setLinearVelocity(btVector3(0, -1, 0));
+				coinList->data.body->body->setLinearVelocity(btVector3(0, -1, 0));
 
 
-			currentItem4->data.cylinder.SetPos(boosterPos.x(), boosterPos.y(), boosterPos.z());
+			coinList->data.cylinder.SetPos(boosterPos.x(), boosterPos.y(), boosterPos.z());
 
-			if (currentItem4->data.timer > 80) {
-				currentItem4->data.timer = 0;
+			if (coinList->data.timer > 80) {
+				coinList->data.timer = 0;
 			}
 			// Homebrew collision detection for sensors
 			if ((Xdistance > -3 && Xdistance < 3) && (Ydistance > -3 && Ydistance < 3) && (Zdistance > -3 && Zdistance < 3)) {
-				LOG("car touch coing");
+				LOG("car touch coin");
 
-				currentItem4->data.deleted = true;
+				coinList->data.deleted = true;
 				App->player->counterForCoins++;
-				App->player->lastCheckPoint.x = currentItem4->data.body->GetPos().x();
-				App->player->lastCheckPoint.y = currentItem4->data.body->GetPos().y();
-				App->player->lastCheckPoint.z = currentItem4->data.body->GetPos().z();
-				currentItem4 = currentItem4->next;
+				App->player->lastCheckPoint.x = coinList->data.body->GetPos().x();
+				App->player->lastCheckPoint.y = coinList->data.body->GetPos().y();
+				App->player->lastCheckPoint.z = coinList->data.body->GetPos().z();
+				coinList = coinList->next;
 
 
 				//App->audio->PlayFx(coinFx);
@@ -359,19 +400,58 @@ update_status ModuleSceneIntro::Update(float dt)
 
 			}
 			else {
-				currentItem4 = currentItem4->next;
+				coinList = coinList->next;
 			}
 
 		}
 		else {
-			currentItem4 = currentItem4->next;
+			coinList = coinList->next;
 		}
 
 
 
 	}
+	p2List_item<CheckPoint>* checkPointList = checkPoints.getFirst();
+
+	while (checkPointList != NULL) {
+
+		if (checkPointList->data.deleted == false) {
+			checkPointList->data.cube.Render();
+
+			btVector3 boosterPos = checkPointList->data.body->GetPos();
 
 
+			btVector3 carPos = App->player->vehicle->GetPos();
+			float Xdistance = abs(boosterPos.x()) - abs(carPos.x());
+			float Ydistance = abs(boosterPos.y()) - abs(carPos.y());
+			float Zdistance = abs(boosterPos.z()) - abs(carPos.z());
+
+			// Homebrew collision detection for sensors
+			if ((Xdistance > -10 && Xdistance < 10) && (Zdistance > -10 && Zdistance < 10)) {
+				LOG("car touch checkPoint");
+
+				App->player->lastCheckPoint.x = checkPointList->data.body->GetPos().x();
+				App->player->lastCheckPoint.y = 85;
+				App->player->lastCheckPoint.z = checkPointList->data.body->GetPos().z();
+				checkPointList = checkPointList->next;
+
+
+				//App->audio->PlayFx(coinFx);
+
+
+			}
+			else {
+				checkPointList = checkPointList->next;
+			}
+
+		}
+		else {
+			checkPointList = checkPointList->next;
+		}
+
+
+
+	}
 
 
 
@@ -448,6 +528,32 @@ void ModuleSceneIntro::AddCoin(vec3 pos, Color rgb, int angle, bool rot_X, bool 
 	coin.cylinder = cylinder;
 	coin.num = num;
 	coins.add(coin);
+
+
+}
+
+void ModuleSceneIntro::AddCheckPoint(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ)
+{
+	Cube cube;
+
+	cube.SetPos(pos.x, pos.y, pos.z);
+	cube.size = size;
+	cube.color = rgb;
+
+	if (rotY == true)
+		cube.SetRotation(rotY, { 0, 1, 0 });
+
+	if (rotX == true)
+		cube.SetRotation(rotX, { 1, 0, 0 });
+
+	if (rotZ == true)
+		cube.SetRotation(rotZ, { 0, 0, 1 });
+
+	CheckPoint checkPoint;
+	checkPoint.body = App->physics->AddBody(cube, 1.0f);
+	checkPoint.body->SetAsSensor(true);
+	checkPoint.cube = cube;
+	checkPoints.add(checkPoint);
 
 
 }

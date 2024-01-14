@@ -21,6 +21,15 @@ struct Coin
 	int num;
 };
 
+struct CheckPoint
+{
+	PhysBody3D* body;
+	Cube cube;
+	bool passed;
+	bool deleted = false;
+	int num;
+};
+
 
 class ModuleSceneIntro : public Module
 {
@@ -34,6 +43,7 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	void AddCube(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ);
+	void AddCheckPoint(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ);
 	void AddCylinder(vec3 pos, float radius, float heigth, Color rgb, float rotX, float rotY, float rotZ);
 	void AddCoin(vec3 pos, Color rgb, int angle, bool rot_X, bool rot_Y, bool rot_Z, int num );
 
@@ -59,5 +69,7 @@ public:
 	PhysMotor3D* right_wheel;
 
 	p2List<Cube> buildingBlocks;
+	p2List<Cylinder> cylinders;
+	p2List<CheckPoint> checkPoints;
 	p2List<Coin> coins;
 };
