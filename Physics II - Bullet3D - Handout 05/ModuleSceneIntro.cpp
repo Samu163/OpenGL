@@ -84,8 +84,8 @@ bool ModuleSceneIntro::Start()
 
 
 	//Monedas en inicio
-	AddCoin({ 0,80,30 }, Yellow, 0, 0, 0, 30, 1);
-	AddCoin({ 0,80,300 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 0,82,30 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 0,82,300 }, Yellow, 0, 0, 0, 30, 1);
 
 
 
@@ -127,8 +127,13 @@ bool ModuleSceneIntro::Start()
 
 	AddCube({ 685,80.01,157.5 }, { 47, 0, 166 }, Purple, 0, 0, 0);
 
-
-
+	//Cylinders
+	AddCylinder({ 685,78,157.5 - 320 }, 5, 200,Green, 0,0,0);
+	AddCylinder({ 685,78,157.5 - 330 }, 5, 200,Green, 0,0,0);
+	AddCylinder({ 685,78,157.5 - 310}, 5, 200,Green, 0,0,0);
+	AddCylinder({ 685,78,157.5 - 300}, 5, 200,Green, 0,0,0);
+	AddCylinder({ 685,78,157.5 - 290}, 5, 200,Green, 0,0,0);
+	AddCylinder({ 685,78,157.5 - 280}, 5, 200,Green, 0,0,0);
 
 
 	//zona de hielo
@@ -253,12 +258,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-void ModuleSceneIntro::AddCylinder(vec3 pos, float radius, Color rgb, float rotX, float rotY, float rotZ)
+void ModuleSceneIntro::AddCylinder(vec3 pos, float radius, float heigth, Color rgb, float rotX, float rotY, float rotZ)
 {
 	Cylinder cylinder;
 
 	cylinder.SetPos(pos.x, pos.y, pos.z);
 	cylinder.radius = radius;
+	cylinder.height = heigth;
 	cylinder.color = rgb;
 
 	if (rotX != 0)

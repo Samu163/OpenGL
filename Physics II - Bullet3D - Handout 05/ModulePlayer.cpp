@@ -139,6 +139,7 @@ update_status ModulePlayer::Update(float dt)
 	if (counterForCoins >= 10) 
 	{
 		//Teleport player to the winning zone 
+
 	}
 
 
