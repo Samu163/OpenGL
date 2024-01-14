@@ -4,6 +4,7 @@
 #include "Primitive.h"
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
+#include "ModuleAudio.h"
 #include <sstream>
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
@@ -18,7 +19,7 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-
+	driftFx = App->audio->LoadFx("assets/drifting.ogg");
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
@@ -160,7 +161,8 @@ update_status ModulePlayer::Update(float dt)
 			velocityLimit = 120;
 			angle = 5.0f * DEGTORAD;
 			isDrifting = true;
-
+			App->audio->PlayFx(driftFx);
+		
 		}
 		else
 		{
@@ -173,7 +175,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
 		//Brake power, decrease it to brake slower 
-		angle = 15.0f * DEGTORAD;
+		angle = 5.0f * DEGTORAD;
 		acceleration = -MAX_ACCELERATION * 10;
 		if (vehicle->GetKmh() < 0) {
 			acceleration = -MAX_ACCELERATION;
@@ -186,6 +188,7 @@ update_status ModulePlayer::Update(float dt)
 
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
+			App->audio->PlayFx(driftFx);
 			acceleration = -MAX_ACCELERATION;
 			velocityLimit = 120;
 			angle = 5.0f * DEGTORAD;
