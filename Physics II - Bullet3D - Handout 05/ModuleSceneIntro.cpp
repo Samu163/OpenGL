@@ -78,7 +78,10 @@ bool ModuleSceneIntro::Start()
 
 
 	//Monedas en inicio
-	AddCoin({ 0,100,30 }, Purple,0, 0, 0, 30, 1);
+	AddCoin({ 0,80,30 }, Purple, 0, 0, 0, 30, 1);
+	AddCoin({ 0,80,300 }, Purple, 0, 0, 0, 30, 1);
+
+
 
 	//Curva1 hacia la izquierda
 	/*AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
@@ -212,7 +215,12 @@ update_status ModuleSceneIntro::Update(float dt)
 
 				currentItem4->data.deleted = true;
 				App->player->counterForCoins++;
+				App->player->lastCheckPoint.x = currentItem4->data.body->GetPos().x();
+				App->player->lastCheckPoint.y = currentItem4->data.body->GetPos().y();
+				App->player->lastCheckPoint.z = currentItem4->data.body->GetPos().z();
 				currentItem4 = currentItem4->next;
+
+
 				//App->audio->PlayFx(coinFx);
 
 
