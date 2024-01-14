@@ -4,6 +4,7 @@
 #include "Primitive.h"
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
+#include <sstream>
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
@@ -216,6 +217,44 @@ update_status ModulePlayer::Update(float dt)
 			turn += angle;
 	}
 
+	//Player Debug Keys
+	//Gravity stuffs
+	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN) {
+		App->physics->currentGravity.setY(App->physics->currentGravity.getY() - 1.0f); // Decrease gravity
+		App->physics->ChangeGravity(App->physics->currentGravity.getY());
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
+		App->physics->currentGravity.setY(App->physics->currentGravity.getY() + 1.0f); // Increase gravity
+		App->physics->ChangeGravity(App->physics->currentGravity.getY());
+	}
+	// Toggle gravity with a key press (e.g., the 'G' key), if press again, switch to normal gravity
+	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_DOWN) {
+		if (App->physics->gravityEnabled) {
+			App->physics->currentGravity.setY(0.0f); // Normal gravity
+			App->physics->ChangeGravity(App->physics->currentGravity.getY());
+			App->physics->gravityEnabled = false;
+		}
+		else {
+			App->physics->currentGravity.setY(-10.0f); // Normal gravity
+			App->physics->ChangeGravity(App->physics->currentGravity.getY());
+			App->physics->gravityEnabled = true;
+		}
+	}
+
+	// Lift force stuffs
+	// Toggle lift force with a key press (e.g., the 'L' key)
+	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN) {
+		App->physics->liftEnabled = !App->physics->liftEnabled;
+
+		//reset the lift force vector when disabling lift
+		if (!App->physics->liftEnabled) {
+			App->physics->liftForce.setValue(0, 0, 0);
+		}
+	}
+
+
+
 
 
 
@@ -233,8 +272,13 @@ update_status ModulePlayer::Update(float dt)
 
 	vehicle->Render();
 
-	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	//display the speed of the car
+	char title[120];
+	sprintf_s(title, "Speed:%.1f Km/h | Gravity: %s (%.2f) | Lift: %s",
+		vehicle->GetKmh(),
+		App->physics->gravityEnabled ? "Enabled" : "Disabled",
+		App->physics->currentGravity.getY(),
+		App->physics->liftEnabled ? "Enabled" : "Disabled");
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;

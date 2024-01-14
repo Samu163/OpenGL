@@ -3,11 +3,12 @@
 #include "Globals.h"
 #include "p2List.h"
 #include "Primitive.h"
+#include "ModulePlayer.h"
 
 #include "Bullet/include/btBulletDynamicsCommon.h"
 
 // Recommended scale is 1.0f == 1 meter, no less than 0.2 objects
-#define GRAVITY btVector3(0.0f, -10.0f, 0.0f) 
+//#define GRAVITY btVector3(0.0f, -10.0f, 0.0f) 
 
 class DebugDrawer;
 struct PhysBody3D;
@@ -19,6 +20,15 @@ class ModulePhysics3D : public Module
 public:
 	ModulePhysics3D(Application* app, bool start_enabled = true);
 	~ModulePhysics3D();
+
+	//Gravity variables
+	btVector3 currentGravity; // Added this variable
+	bool gravityEnabled;  // To keep track of the gravity state
+	//
+
+	//Lift Force variables
+	bool liftEnabled;  // To keep track of the lift force state
+	btVector3 liftForce; // The lift force vector
 
 	bool Init();
 	bool Start();
@@ -34,6 +44,8 @@ public:
 
 	void AddConstraintP2P(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB);
 	void AddConstraintHinge(PhysBody3D& bodyA, PhysBody3D& bodyB, const vec3& anchorA, const vec3& anchorB, const vec3& axisS, const vec3& axisB, bool disable_collision = false);
+
+	void ChangeGravity(float gravityValue);
 
 private:
 
