@@ -19,7 +19,7 @@ ModuleSceneIntro::~ModuleSceneIntro()
 bool ModuleSceneIntro::Start()
 {
 
-	App->audio->PlayMusic("assets/Night.wav", 0.0f);
+	//App->audio->PlayMusic("assets/Night.wav", 0.0f);
 
 	LOG("Loading Intro assets");
 	bool ret = true;
