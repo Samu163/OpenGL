@@ -38,3 +38,4 @@ extern Color  Naranja;
 extern Color  Verde;
 extern Color Yellow;
 extern Color Carretera;
+extern Color Hielo;

@@ -111,27 +111,13 @@ bool ModuleSceneIntro::Start()
 
 	//RECTA HIELO
 	AddCube({-30+  1.7 + 782 + 600 + 20, 120.02, 195 - 200 - 100 }, { 30, 0, 100 }, Carretera, 0, -10, 0);
-	/*AddCube({ -539 + 782 + 600, 60.01, 643 - 200 }, { 30, 2, 100 }, Grey, 0, -90, 0);
-	AddCube({ -539 + 782 + 600, 60.01, 643 - 200 }, { 30, 2, 100 }, Grey, 0, -90, 0);
-	AddCube({ -539 + 782 + 600, 60.01, 643 - 200 }, { 30, 2, 100 }, Grey, 0, -90, 0);*/
+	
 
 
 	//Monedas en inicio
 	AddCoin({ 0,82,30 }, Yellow, 0, 0, 0, 30, 1);
 	AddCoin({ 0,82,300 }, Yellow, 0, 0, 0, 30, 1);
 
-
-
-	//Curva1 hacia la izquierda
-	/*AddCube({ 530.3083, 30, 195.1552 }, { 55.4649  , 0,  55.4649 }, Grey, 0, 26.974, 0);
-	AddCube({ 509.8372-11, 30, 185.0201 }, { 62.1752, 0, 71.5963 }, Grey, 0, 56.122, 0);
-	AddCube({ 431.3337, 30, 170.0843 }, { 140.6841, 0, 44.5639 }, Grey, 0, 180, 0);*/
-	//AddCube({ 10, 1, 00 }, { 2, 2, 10 }, Red, 0, 1, 0);
-		
-	
-	//rampa
-	/*AddCube({ 0,80.01, -82.5 }, { 47, 0, 166 }, Purple, 20, 0, 0);
-	AddCube({ 0,110, -231.25 }, { 47, 0, 130 }, Purple, 0, 0, 0);*/
 
 	AddCube({ 0,100.01, -200 }, { 47, 0, 120+20 }, Carretera, -20, 0, 0);
 	//rampa-Curva
@@ -170,9 +156,9 @@ bool ModuleSceneIntro::Start()
 
 
 	//zona de hielo
-	AddCube({ 685,80.02,157.5 - 160 }, { 47, 0, 166 }, Purple, 0, 0, 0);
-	AddCube({ 685,80.01,157.5 - 160 - 160 }, { 47, 0, 166 }, Purple, 0, 0, 0);
-	AddCube({ 685,80.02,157.5 - 160 - 160 - 160 }, { 47, 0, 166 }, Purple, 0, 0, 0);
+	AddCube({ 685,80.02,157.5 - 160 }, { 47, 0, 166 }, Hielo, 0, 0, 0);
+	AddCube({ 685,80.01,157.5 - 160 - 160 }, { 47, 0, 166 }, Hielo, 0, 0, 0);
+	AddCube({ 685,80.02,157.5 - 160 - 160 - 160 }, { 47, 0, 166 }, Hielo, 0, 0, 0);
 
 
 	//rampa-Curva
@@ -189,7 +175,7 @@ bool ModuleSceneIntro::Start()
 
 	//barro
 	AddCube({ 1383,120.02,-225 }, { 47, 0, 166 }, Marron,0, 0, 0);
-	//AddCube({ 1325,120.02,-365 }, { 47, 60, 47 }, Marron, 0, -165, 0);
+	
 	//recta
 
 	//cosas cositas lineas carretera
