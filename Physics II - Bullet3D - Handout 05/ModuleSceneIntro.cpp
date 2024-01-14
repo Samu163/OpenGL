@@ -115,7 +115,7 @@ bool ModuleSceneIntro::Start()
 
 
 	//Monedas en inicio
-	AddCoin({ 0,82,30 }, Yellow, 0, 0, 0, 30, 1);
+	
 
 	AddCoin({ 466,80.01+2,-610  }, Yellow, 0, 0, 0, 30, 1);
 
@@ -132,12 +132,12 @@ bool ModuleSceneIntro::Start()
 	AddCoin({ 1383,120.02+2,-225 }, Yellow, 0, 0, 0, 30, 1);
 	
 
-	AddCoin({ 685,80.01+2,157.5 - 160 - 160 }, Yellow, 0, 0, 0, 30, 1);
+	AddCoin({ 685,80.01+2,-162.5 }, Yellow, 0, 0, 0, 30, 1);
 
 	AddCoin({ 570,80.01+2, 377.5 }, Yellow, 0, 0, 0, 30, 1);
-	AddCoin({ 390,80.02+2, -715 }, Yellow, 0, 0, 0, 30, 1);
+	
 	AddCoin({ 1232, 120.02+2, 253 }, Yellow, 0, 0, 0, 30, 1);
-	AddCoin({ 1287.2,120.01+2, 175 }, Yellow, 0, 0, 0, 30, 1);
+
 	AddCoin({ 455,130+2, -231.25 }, Yellow, 0, 0, 0, 30, 1);
 	AddCoin({ 685,80.01+2, -455 }, Yellow, 0, 0, 0, 30, 1);
 
