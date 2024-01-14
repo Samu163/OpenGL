@@ -221,6 +221,9 @@ bool ModuleSceneIntro::Start()
 	
 	AddCube({ -262 + 782 + 600, 120.02, 570 - 200 }, { 1.5, 0.1, 50 }, White, 0, -60, 0);
 	
+
+	//CheckPoints 
+	AddCheckPoint({ 685, 80.02, 157.5 - 380 }, { 3, 3, 3 }, Red, 0, 0, 0);
 	
 
 	AddCube({ -350 + 782 + 600, 120.01, 610 - 200 }, { 1.5, 0.1, 50 }, White, 0, -70, 0);
@@ -298,15 +301,15 @@ update_status ModuleSceneIntro::Update(float dt)
 		c->data.Render();
 		c = c->next;
 	}
-	p2List_item<Coin>* currentItem4 = coins.getFirst();
+	p2List_item<Coin>* coinList = coins.getFirst();
 
-	while (currentItem4 != NULL) {
+	while (coinList != NULL) {
 
-		if (currentItem4->data.deleted == false) {
-			currentItem4->data.timer++;
-			currentItem4->data.cylinder.Render();
+		if (coinList->data.deleted == false) {
+			coinList->data.timer++;
+			coinList->data.cylinder.Render();
 
-			btVector3 boosterPos = currentItem4->data.body->GetPos();
+			btVector3 boosterPos = coinList->data.body->GetPos();
 
 
 			btVector3 carPos = App->player->vehicle->GetPos();
@@ -314,34 +317,34 @@ update_status ModuleSceneIntro::Update(float dt)
 			float Ydistance = abs(boosterPos.y()) - abs(carPos.y());
 			float Zdistance = abs(boosterPos.z()) - abs(carPos.z());
 
-			btVector3 speed = currentItem4->data.body->body->getAngularVelocity();
+			btVector3 speed = coinList->data.body->body->getAngularVelocity();
 			speed.setY(10);
 
-			currentItem4->data.body->body->setAngularVelocity(speed);
+			coinList->data.body->body->setAngularVelocity(speed);
 
-			currentItem4->data.cylinder.Update(currentItem4->data.body);
+			coinList->data.cylinder.Update(coinList->data.body);
 
-			if (currentItem4->data.timer < 48)
-				currentItem4->data.body->body->setLinearVelocity(btVector3(0, 1, 0));
+			if (coinList->data.timer < 48)
+				coinList->data.body->body->setLinearVelocity(btVector3(0, 1, 0));
 			else
-				currentItem4->data.body->body->setLinearVelocity(btVector3(0, -1, 0));
+				coinList->data.body->body->setLinearVelocity(btVector3(0, -1, 0));
 
 
-			currentItem4->data.cylinder.SetPos(boosterPos.x(), boosterPos.y(), boosterPos.z());
+			coinList->data.cylinder.SetPos(boosterPos.x(), boosterPos.y(), boosterPos.z());
 
-			if (currentItem4->data.timer > 80) {
-				currentItem4->data.timer = 0;
+			if (coinList->data.timer > 80) {
+				coinList->data.timer = 0;
 			}
 			// Homebrew collision detection for sensors
 			if ((Xdistance > -3 && Xdistance < 3) && (Ydistance > -3 && Ydistance < 3) && (Zdistance > -3 && Zdistance < 3)) {
-				LOG("car touch coing");
+				LOG("car touch coin");
 
-				currentItem4->data.deleted = true;
+				coinList->data.deleted = true;
 				App->player->counterForCoins++;
-				App->player->lastCheckPoint.x = currentItem4->data.body->GetPos().x();
-				App->player->lastCheckPoint.y = currentItem4->data.body->GetPos().y();
-				App->player->lastCheckPoint.z = currentItem4->data.body->GetPos().z();
-				currentItem4 = currentItem4->next;
+				App->player->lastCheckPoint.x = coinList->data.body->GetPos().x();
+				App->player->lastCheckPoint.y = coinList->data.body->GetPos().y();
+				App->player->lastCheckPoint.z = coinList->data.body->GetPos().z();
+				coinList = coinList->next;
 
 
 				//App->audio->PlayFx(coinFx);
@@ -349,19 +352,58 @@ update_status ModuleSceneIntro::Update(float dt)
 
 			}
 			else {
-				currentItem4 = currentItem4->next;
+				coinList = coinList->next;
 			}
 
 		}
 		else {
-			currentItem4 = currentItem4->next;
+			coinList = coinList->next;
 		}
 
 
 
 	}
+	p2List_item<CheckPoint>* checkPointList = checkPoints.getFirst();
+
+	while (checkPointList != NULL) {
+
+		if (checkPointList->data.deleted == false) {
+			checkPointList->data.cube.Render();
+
+			btVector3 boosterPos = checkPointList->data.body->GetPos();
 
 
+			btVector3 carPos = App->player->vehicle->GetPos();
+			float Xdistance = abs(boosterPos.x()) - abs(carPos.x());
+			float Ydistance = abs(boosterPos.y()) - abs(carPos.y());
+			float Zdistance = abs(boosterPos.z()) - abs(carPos.z());
+
+			// Homebrew collision detection for sensors
+			if ((Xdistance > -10 && Xdistance < 10) && (Zdistance > -10 && Zdistance < 10)) {
+				LOG("car touch checkPoint");
+
+				App->player->lastCheckPoint.x = checkPointList->data.body->GetPos().x();
+				App->player->lastCheckPoint.y = 85;
+				App->player->lastCheckPoint.z = checkPointList->data.body->GetPos().z();
+				checkPointList = checkPointList->next;
+
+
+				//App->audio->PlayFx(coinFx);
+
+
+			}
+			else {
+				checkPointList = checkPointList->next;
+			}
+
+		}
+		else {
+			checkPointList = checkPointList->next;
+		}
+
+
+
+	}
 
 
 
@@ -438,6 +480,32 @@ void ModuleSceneIntro::AddCoin(vec3 pos, Color rgb, int angle, bool rot_X, bool 
 	coin.cylinder = cylinder;
 	coin.num = num;
 	coins.add(coin);
+
+
+}
+
+void ModuleSceneIntro::AddCheckPoint(vec3 pos, vec3 size, Color rgb, float rotX, float rotY, float rotZ)
+{
+	Cube cube;
+
+	cube.SetPos(pos.x, pos.y, pos.z);
+	cube.size = size;
+	cube.color = rgb;
+
+	if (rotY == true)
+		cube.SetRotation(rotY, { 0, 1, 0 });
+
+	if (rotX == true)
+		cube.SetRotation(rotX, { 1, 0, 0 });
+
+	if (rotZ == true)
+		cube.SetRotation(rotZ, { 0, 0, 1 });
+
+	CheckPoint checkPoint;
+	checkPoint.body = App->physics->AddBody(cube, 1.0f);
+	checkPoint.body->SetAsSensor(true);
+	checkPoint.cube = cube;
+	checkPoints.add(checkPoint);
 
 
 }

@@ -191,12 +191,12 @@ update_status ModulePlayer::Update(float dt)
 
 	}
 	//Change size of vehicle
-	if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
-	{
+	//if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
+	//{
 
-		vehicle->info.chassis_size.Set(10, 0.5, 4);
-		//vehicle->info.chassis_offset.Set(10, 0.5, 0);
-	}
+	//	vehicle->info.chassis_size.Set(10, 0.5, 4);
+	//	//vehicle->info.chassis_offset.Set(10, 0.5, 0);
+	//}
 	//Change friction
 	if (App->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
 	{
@@ -235,7 +235,15 @@ update_status ModulePlayer::Update(float dt)
 		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
 			acceleration = -MAX_ACCELERATION ;
-			velocityLimit = 120;
+			if (vehicle->info.frictionSlip > 50)
+			{
+				velocityLimit = 60;
+			}
+			else
+			{
+				velocityLimit = 120;
+
+			}
 			angle = 5.0f * DEGTORAD;
 			if (!isDrifting) {
 				App->audio->PlayFx(driftFx);
@@ -275,7 +283,15 @@ update_status ModulePlayer::Update(float dt)
 		{
 			App->audio->PlayFx(driftFx);
 			acceleration = -MAX_ACCELERATION;
-			velocityLimit = 120;
+			if (vehicle->info.frictionSlip > 50)
+			{
+				velocityLimit = 60;
+			}
+			else
+			{
+				velocityLimit = 120;
+
+			}
 			angle = 5.0f * DEGTORAD;
 			if (!isDrifting) {
 				App->audio->PlayFx(driftFx);
@@ -356,7 +372,10 @@ update_status ModulePlayer::Update(float dt)
 		}
 	}
 
-
+	if (vehicle->info.frictionSlip > 50)
+	{
+		velocityLimit = 90;
+	}
 
 	//Velocity limit
 	if (vehicle->GetKmh() > velocityLimit) {
