@@ -32,3 +32,5 @@ extern Color Black;
 extern Color White;
 extern Color Grey;
 extern Color  Purple;
+extern Color  Marron;
+extern Color  Amarillo;
